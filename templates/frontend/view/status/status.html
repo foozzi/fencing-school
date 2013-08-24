@@ -1,0 +1,25 @@
+<div class="well">
+	<h3 style="text-align:center">{{ @title }}</h3>
+	<check if="{{ isset(@Blocks) }}">	
+		<true>
+			<repeat group="{{ @Blocks }}" value="{{ @Block }}">
+				<div id="status-link">
+					{{ @Block.Content | raw }}
+				</div>
+			</repeat>
+		</true>
+	</check>	
+</div>
+
+<script>
+	$(function(){
+		Wrap = $('#status-link');
+		Link = Wrap.find('a');
+		Link.addClass('pure-button pure-button-secondary pure-button-xlarge')
+		Link.attr('style', 'text-decoration:none');
+		Link.mouseover(function(){	    
+	    	$(this).attr('style', 'color:white; text-decoration:none;');
+	    });
+	});
+
+</script>

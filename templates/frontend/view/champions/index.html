@@ -1,0 +1,23 @@
+<div class="well">
+	<h3 style="text-align:center;"><ins>Чемпионы мира - Личные соревнования</ins></h3>
+
+	<div class="champ-wrap">
+		<button id="man" href="{{ @URL.link }}/man/ones" class="pure-button pure-button-secondary pure-button-xlarge">Мужчины</button>
+		<button id="woman" href="{{ @URL.link }}/woman/ones" class="pure-button pure-button-secondary pure-button-xlarge pull-right">Женщины</button>
+	</div>
+
+
+
+	<h3 style="text-align:center; padding-top: 50px;"><ins>Чемпионы мира - Командные соревнования</ins></h3>
+
+	<div class="champ-wrap">
+		<button id="man" href="{{ @URL.link }}/man/comand" class="pure-button pure-button-secondary pure-button-xlarge">Мужчины</button>
+		<button id="woman" href="{{ @URL.link }}/woman/comand" class="pure-button pure-button-secondary pure-button-xlarge pull-right">Женщины</button>
+	</div>
+</div>
+
+<script>
+	$('#man, #woman').click(function(){
+		document.location.href = $(this).attr('href');
+	});
+</script>

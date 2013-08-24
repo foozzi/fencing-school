@@ -1,0 +1,56 @@
+<div class="well">
+	<check if="{{ @Blocks }}">
+		<true>
+			<repeat group="{{ @Blocks }}" value="{{ @Block }}">
+				<check if="{{ @Block.Position }} == 1">
+					<true>															
+
+							{{ @Block.Content | raw }}
+								
+					</true>	
+				</check>			
+				<check if="{{ @Block.Position }} == 2">
+					<true>			
+					
+							{{ @Block.Content | raw }}				
+					
+					</true>
+				</check>										
+			</repeat>
+		</true>
+	</check>
+</div>
+
+     
+<!-- Modal 1 -->
+<div id="map1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Мы на карте</h3>
+	</div>
+	<div class="modal-body">
+		<div align="center">
+			<p><iframe src="https://maps.google.ru/?ie=UTF8&amp;ll=27.283926,105.507202&amp;spn=1.562213,3.348083&amp;t=h&amp;z=9&amp;output=embed" width="425" height="350" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe><br /><small><a style="color: #0000ff; text-align: left;" href="https://maps.google.ru/?ie=UTF8&amp;ll=27.283926,105.507202&amp;spn=1.562213,3.348083&amp;t=h&amp;z=9&amp;source=embed">Просмотреть увеличенную карту</a></small></p>
+		</div>
+    </div>
+</div>
+
+
+<!-- Modal 2 -->
+<div id="map2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Мы на карте</h3>
+	</div>
+	<div class="modal-body">
+		<div align="center">
+			<p><iframe src="https://maps.google.ru/?ie=UTF8&amp;ll=27.283926,105.507202&amp;spn=1.562213,3.348083&amp;t=h&amp;z=9&amp;output=embed" width="425" height="350" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe><br /><small><a style="color: #0000ff; text-align: left;" href="https://maps.google.ru/?ie=UTF8&amp;ll=27.283926,105.507202&amp;spn=1.562213,3.348083&amp;t=h&amp;z=9&amp;source=embed">Просмотреть увеличенную карту</a></small></p>
+		</div>
+    </div>
+</div>
+
+
+
+<script>
+	$("a[href]").attr("data-toggle", "modal");
+</script>

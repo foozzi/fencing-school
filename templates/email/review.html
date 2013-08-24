@@ -1,0 +1,20 @@
+Дорогой, менеджер. <br />
+Поступил отзыв с сайта. <br />
+<br />
+
+<u>Имя</u><br />
+<?= htmlspecialchars( Request::get('Name') ) ?><br />
+<br />
+
+<u>Телефон</u><br />
+<?= htmlspecialchars( Request::get('Phone') ) ?><br />
+<br />
+
+<u>E-mail</u><br />
+<?= htmlspecialchars( Request::get('Email') ) ?><br />
+<br />
+
+<u>Отзыв</u><br />
+<?= nl2br( htmlspecialchars( Request::get('Text') ) ) ?><br />
+<br />
+

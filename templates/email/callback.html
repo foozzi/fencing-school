@@ -1,0 +1,16 @@
+Дорогой, менеджер. <br />
+Вас просят перезвонить. <br />
+<br />
+
+<u>Имя</u><br />
+<?= htmlspecialchars( Request::get('Name') ) ?><br />
+<br />
+
+<u>Телефон</u><br />
+<?= htmlspecialchars( Request::get('Phone') ) ?><br />
+<br />
+
+<u>Вопрос</u><br />
+<?= nl2br( htmlspecialchars( Request::get('Text') ) ) ?><br />
+<br />
+

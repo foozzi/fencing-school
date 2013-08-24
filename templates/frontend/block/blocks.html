@@ -1,0 +1,10 @@
+<div class="well">
+	<? foreach ( $Page->getBlocks() as $Block ) : ?>
+	<? if ( $Block->IsFile ) : ?>
+		<img src="<?= File::url( $Block, 0 ) ?>" alt="" />
+		<b class="round1"></b><b class="round2"></b><b class="round3"></b><b class="round4"></b>
+		<?= nl2br( htmlspecialchars( $Block->Description ) ) ?>
+	<? endif; ?>
+	<?= $Block->Content ?>
+	<? endforeach; ?>
+</div>

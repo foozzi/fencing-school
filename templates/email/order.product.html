@@ -1,0 +1,102 @@
+<? $Order = $this->getObject(); ?>
+<? $Address = $Order->getAddress(); ?>
+
+<style type="text/css">
+	thead td{
+		background: #eeeeee;
+	}
+	tfoot td, tfoot th{
+		height: 30px;
+		line-height: 30px;
+		background: #eeeeee;
+	}
+	table th{
+		width: 150px;
+		text-align: left;
+	}
+	
+</style>
+
+Дорогой, менеджер. <br />
+Поступил индивидуальный заказ от клиента. <br />
+<br />
+
+<? $Custom = $Order->getCustom(); ?>
+
+<table width="600">
+	<tr>
+		<th>Имя</th>
+		<td><?= htmlspecialchars( $Address->Name ) ?></td>
+	</tr>
+	<tr>
+		<th>Компания</th>
+		<td><?= htmlspecialchars( $Address->Company ) ?></td>
+	</tr>
+	<tr>
+		<th>Телефон</th>
+		<td><?= htmlspecialchars( $Address->Phone ) ?></td>
+	</tr>
+	<tr>
+		<th>E-mail</th>
+		<td><?= htmlspecialchars( $Address->Email ) ?></td>
+	</tr>
+	<tr>
+		<th>Адрес</th>
+		<td><?= nl2br( htmlspecialchars( $Address->Street ) ) ?></td>
+	</tr>
+	<tr>
+		<th>Доставка</th>
+		<td><?= htmlspecialchars( $Order->Shipping ) ?></td>
+	</tr>
+	<tr>
+		<th>Монтаж</th>
+		<td><?= htmlspecialchars( $Custom->Assembly ) ?></td>
+	</tr>
+	<tr>
+		<th>Опции</th>
+		<td><?= nl2br( htmlspecialchars( $Custom->Comment ) ) ?></td>
+	</tr>
+	<? if ( $Custom->Model ) : ?>
+	<tr>
+		<th>Модель</th>
+		<td>
+			<img src="<?= URL::abs( File::url( $Custom->getProduct(), 0 ) ) ?>" alt="" />
+			<p><?= htmlspecialchars( $Custom->getModel()->Name ) ?></p>
+		</td>
+	</tr>
+	<? endif; ?>
+<? $frames = $Custom->getFrame(); ?>
+<? $designs = $Custom->getDesign(); ?>
+	<? if ( count( $frames ) ) : ?>
+	<? foreach ( $Custom->getProduct()->getFrame() as $i => $item ) : ?>
+	<? $values = $item['Values'] ? explode( ';', $item['Values'] ) : array(); ?>
+	<tr>
+		<th><?= htmlspecialchars( $item['Name'] ) ?></th>
+		<td><?= htmlspecialchars( count( $values ) ? $values[ $frames[ $i ] ] : $frames[ $i ]  ) ?></td>
+	</tr>
+	<? endforeach; ?>
+	<? endif; ?>
+	<? if ( count( $designs ) ) : ?>
+	<? foreach ( $Custom->getProduct()->getDesign() as $i => $item ) : ?>
+	<? $values = $item['Values'] ? explode( ';', $item['Values'] ) : array(); ?>
+	<tr>
+		<th><?= htmlspecialchars( $item['Name'] ) ?></th>
+		<td><?= htmlspecialchars( count( $values ) ? $values[ $designs[ $i ] ] : $designs[ $i ]  ) ?></td>
+	</tr>
+	<? endforeach; ?>
+	<? endif; ?>
+	<? if ( $Custom->Brand ) : ?>
+	<tr>
+		<th>Бренд</th>
+		<td><?= htmlspecialchars( $Custom->getBrand()->Name ) ?></td>
+	</tr>
+	<? endif; ?>
+	<tr>
+		<th>Поликарбонат</th>
+		<td>
+			<img src="<?= URL::abs( File::url( $Custom->getColor(), 0 ) ) ?>" alt="" />
+		</td>
+	</tr>
+	
+</table>
+

@@ -1,0 +1,57 @@
+<div class="content-box">
+
+	<?= $this->htmlBreadcrumbs() ?>
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="<?= Request::get('REQUEST_URI', '', 'SERVER') ?>" method="post" id="edit-form" class="fixed-form">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Автор</th>
+			<td><?= htmlspecialchars( $Comment->Author ) ?></td>
+		</tr>
+		<tr>
+			<th>Дата</th>
+			<td><?= $Comment->getDate() ?></td>
+		</tr>
+		<tr>
+			<th>Ссылается на</th>
+			<td><?= htmlspecialchars( $Comment->getObject()->Name ) ?></td>
+		</tr>
+		<tr>
+			<th>Текст</th>
+			<td><?= nl2br( htmlspecialchars( $Comment->Text ) ) ?></td>
+		</tr>
+		<tr>
+			<th>Ответ</th>
+			<td><textarea name="Text" cols="40" rows="3" class="wide first"><?= htmlspecialchars( $Answer->Text ) ?></textarea></td>
+		</tr>
+		</table>
+		
+		<div class="form-buttons" style="width: 150px">
+			<button type="submit" name="submit" class="submit">Ответить</button>
+			<br />
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	$('#edit-form').jFixedForm();
+	
+})(jQuery);
+//-->
+</script>

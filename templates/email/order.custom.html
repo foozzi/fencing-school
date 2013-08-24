@@ -1,0 +1,43 @@
+<? $Order = $this->getObject(); ?>
+<? $Address = $Order->getAddress(); ?>
+<? $Custom = $Order->getCustom(); ?>
+
+<style type="text/css">
+	thead td{
+		background: #eeeeee;
+	}
+	tfoot td, tfoot th{
+		height: 30px;
+		line-height: 30px;
+		background: #eeeeee;
+	}
+	table th{
+		width: 150px;
+		text-align: left;
+	}
+	
+</style>
+
+Дорогой, менеджер. <br />
+Поступил индивидуальный заказ от клиента. <br />
+<br />
+
+<table width="600">
+	<tr>
+		<th>Имя</th>
+		<td><?= htmlspecialchars( $Custom->Name ) ?></td>
+	</tr>
+	<tr>
+		<th>E-mail</th>
+		<td><?= htmlspecialchars( $Custom->Email ) ?></td>
+	</tr>
+	<tr>
+		<th>Телефон</th>
+		<td><?= htmlspecialchars( $Address->Phone ) ?></td>
+	</tr>
+	<tr>
+		<th>Назначение</th>
+		<td><?= nl2br( htmlspecialchars( $Custom->Goal ) ) ?></td>
+	</tr>
+</table>
+

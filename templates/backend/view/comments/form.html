@@ -1,0 +1,72 @@
+<div class="content-box">	
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="<?= Request::get('REQUEST_URI', '', 'SERVER') ?>" method="post" id="edit-form" class="fixed-form">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Автор</th>
+			<td><input type="text" name="Author" value="<?= htmlspecialchars( $Comment->Author ) ?>" class="wide first" /></td>
+		</tr>
+		<tr>
+			<th>Дата</th>
+			<td>
+				<input name="PostedAt" type="text" value="<?= $Comment->getDate() ?>"/>
+			</td>
+		</tr>
+		<tr>
+			<th>Ссылается на</th>
+			<td><?= htmlspecialchars( $Comment->getObject()->Name ) ?></td>
+		</tr>
+		<tr>
+			<th>Рейтинг:</th>
+			<td>
+				<div class="rate-l1">
+					<div class="rateit" id="rateit" data-rateit-value="<?= $Comment->Rank ?>"></div>
+				</div>
+				<input type="hidden" name="Rank" value="<?= $Comment->Rank ?>" />
+			</td>
+		</tr>
+		<tr>
+			<th>Текст</th>		
+			<td>
+				<textarea class="wide" cols="40" name="Text" rows="3"><?= htmlspecialchars( $Comment->Text ) ?></textarea>
+			</td>
+		</tr>
+		</table>
+		
+		<div class="form-buttons" style="width: 150px">
+			<button type="submit" name="submit" class="submit">Подтвердить</button>
+			<br />
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.jFixedForm();
+	
+	$('#edit-form .rateit').rateit().bind('rated', function(e, r) {
+		$('#edit-form input[name="Rank"]').val(r);
+	});
+
+	
+})(jQuery);
+//-->
+</script>
+

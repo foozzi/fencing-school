@@ -1,0 +1,62 @@
+<div class="content-box">
+
+	<h1><?= $Image->Id ? 'Редактирование изображения' : 'Добавление изображения' ?></h1>
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" enctype="multipart/form-data">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Наименование</th>
+			<td><input type="text" name="Name" value="<?= htmlspecialchars( $Image->Name ) ?>" class="wide" /></td>
+		</tr>
+		<tr>
+			<th>Изображение</th>
+			<td>
+				<input type="file" name="file" /> 
+				<? if ( $Image->IsFile ) : ?>
+				<input type="checkbox" name="detach" value="1" /> <small>удалить картинку</small>
+				<? endif; ?>
+			</td>
+		</tr>
+		<? if ( $Image->IsFile ) : ?>
+		<tr>
+			<th>&nbsp;</th>
+			<td><img src="<?= File::url( $Image ) ?>" alt="" /></td>
+		</tr>
+		<? endif; ?>
+		</table>
+		
+		<br />
+		<table width="100%" cellpadding="0" cellspacing="0" class="recall">
+		<tr>
+			<td align="left"><button type="button" name="cancel">Отмена</button></td>
+			<td align="right"><button type="submit" name="submit" href="<?= $this->getLink('', true) ?>">Сохранить</button></td>
+		</tr>
+		</table>
+	
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+})(jQuery);
+//-->
+</script>

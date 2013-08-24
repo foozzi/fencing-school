@@ -1,0 +1,49 @@
+AddDefaultCharset utf-8
+
+Options All -Indexes
+
+php_value magic_quotes_gpc 0
+php_value memory_limit 96M
+php_value post_max_size 64M
+php_value upload_max_filesize 64M
+php_value display_errors on
+
+AddType application/vnd.ms-fontobject .eot
+AddType font/ttf .ttf
+AddType font/otf .otf
+AddType application/x-font-woff .woff
+
+RewriteEngine on
+RewriteBase /
+
+
+RewriteRule ^frontend/ - [L]
+RewriteRule ^css/(.*) frontend/css/$1 [L]
+RewriteRule ^js/(.*) frontend/js/$1 [L]
+RewriteRule ^img/(.*) frontend/img/$1 [L]
+#RewriteRule ^images/(.*) frontend/images/$1 [L]
+
+RewriteRule ^files/ - [L]
+RewriteRule ^upload/ - [L]
+
+RewriteRule ^a/T(.+)F(.+)I(.+)/(.+)\.(.+)$ files/Article/$1/$2/$3.$5 [L]
+RewriteRule ^f/T(.+)F(.+)I(.+)/(.+)\.(.+)$ files/Pricelist/$1/$2/$3.$5 [L]
+RewriteRule ^i/B(.+)F(.+)I(.+)/(.+)\.(.+)$ files/Banner/$1/$2/$3.$5 [L]
+
+RewriteRule ^robots\.txt - [L]
+RewriteRule ^sitemap\.xml files/sitemap.xml [L]
+
+RewriteRule ^yandex_(.+)\.txt - [L]
+RewriteRule ^google(.+)\.html - [L]
+
+RewriteRule ^robots\.txt - [L]
+RewriteRule ^sitemap\.xml files/sitemap.xml [L]
+RewriteRule ^yandex_(.+)\.txt - [L]
+RewriteRule ^google(.+)\.html - [L]
+RewriteRule ^favicon(.+) /frontend/img/favicon.phg [L]
+RewriteRule ^captcha\.php - [L]
+RewriteRule ^captcha\.jpg captcha.php [L]
+RewriteRule ^svn-update\.php - [L]
+RewriteRule ^index\.php - [L]
+RewriteRule .* index.php [L]
+

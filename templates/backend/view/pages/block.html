@@ -1,0 +1,60 @@
+<div class="content-box">
+	
+	<? if ( count( $Error ) ) : ?>
+		<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" enctype="multipart/form-data" class="ping">
+
+	<fieldset>
+
+		<table class="form">
+		<div class="form-group">
+			<?= _t('Title') ?>
+			<input type="text" name="Title" value="<?= htmlspecialchars( $Block->Title ) ?>" class="form-control" style="width:50%;" />
+		</div>
+
+		<div class="form-group">
+			<?= _t('Image') ?>
+				<input type="file" name="file" /> 
+				<? if ( $Block->IsFile ) : ?>
+				<input type="checkbox" class="form-control" name="detach" value="1" /> <small><?= _t('Delete image') ?></small>
+				<? endif; ?>
+		</div>
+
+		<div class="form-group">
+			<?= _t('Image description') ?>
+			<textarea name="Description" cols="40" rows="3" class="form-control"><?= htmlspecialchars( $Block->Description ) ?></textarea>
+		</tr>
+		
+		<div class="form-group">
+			<?= _t('Text') ?>			
+			<textarea name="Content" rows="10" cols="40" class="wysiwyg form-control"><?= htmlspecialchars( $Block->Content ) ?></textarea>
+		</div>		
+				
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="btn btn-primary submit"><?= _t('Save') ?></button>
+			<button type="button" name="cancel" class="btn btn-primary cancel" href="<?= $this->getLink('edit/'.$Block->PageId) ?>#blocks"><?= _t('Cancel') ?></button>
+		</div>
+	
+	
+	</fieldset>
+	
+	</form>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+
+	$form.find('textarea.wysiwyg').tinymce($.tinymce.defaultOptions.simple);
+	
+})(jQuery);
+//-->
+</script>

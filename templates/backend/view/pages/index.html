@@ -1,0 +1,48 @@
+<div class="content-box">
+	<a class="btn btn-primary" href="<?= $this->getLink('add') ?>">Добавить страницу</a>
+
+	<div id="pages-list">
+
+		<table class="table table-striped">
+			<thead>
+			  <tr>	  	
+			    <th>Название</th>
+			    <th>Ссылка</th>
+			    <th>Заголовок</th>            
+			    <th>Меню</th>
+			    <th>Карта</th>
+			    <th>Действия</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <ul>
+			  	<? foreach ( $Pages as $Page ) : ?>
+				<?= $this->htmlListItem( $Page ) ?>
+				<? endforeach; ?>
+			  </ul>
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $list = $('#pages-list'), urlStatus = "<?= $this->getLink('status') ?>";
+	
+	/*$list.jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('pos') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});*/
+
+	$list.find('input[name="InMenu[]"], input[name="IsEnabled[]"]').change(function(){		
+		$.post(urlStatus, {"ajax" : 1, "id" : $(this).val(), "name" : $(this).attr('name'), "state" : $(this).is(':checked') ? 1 : 0}, function(res){
+		}, "json");
+	});
+
+})(jQuery);
+//-->
+</script>

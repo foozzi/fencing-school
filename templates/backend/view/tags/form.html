@@ -1,0 +1,31 @@
+<form action="" method="post" id="edit-form" class="ping">
+
+	<fieldset>
+
+		<table class="form">
+		<tr>
+			<div class="form-group">
+				<th class="col-param"><?= _t('Name') ?></th>
+				<td>
+					<input type="text" name="Name" value="<?= htmlspecialchars( $Tag->Name ) ?>" class="form-control" />			
+				</td>				
+			</div>
+		</tr>
+		</table>
+		
+		<br />
+
+		<button type="submit" name="submit" class="btn btn-primary"><?= _t('Save') ?></button>
+		<button type="button" name="cancel" class="btn btn-primary" href="<?= $this->getLink('', true) ?>"><?= _t('Cancel') ?></button>
+
+		
+	</fieldset>
+	
+	</form>
+
+<script>
+$('button[name="cancel"]').click(function(){
+	document.location.href = $(this).attr('href');
+});
+</script>
+

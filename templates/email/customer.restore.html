@@ -1,0 +1,10 @@
+<p>Здравствуйте <?= htmlspecialchars( $this->getObject()->Name ) ?>.</p>
+
+<p>
+	Для восстановления пароля перейдите по следующей ссылке:
+	<a href="<?= URL::get( new Controller_Frontend_My() ) . '/forgot/'.$this->getObject()->RestoreCode ?>">
+		<?= URL::get( new Controller_Frontend_My() ) . '/forgot/'.$this->getObject()->RestoreCode ?>
+	</a>
+	<br />
+	Время действия ссылки <?= Customer::RESTORE_TIME / 3600 ?> часов.
+</p>

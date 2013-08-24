@@ -1,0 +1,26 @@
+<li style="list-style-type: none;" value="<?= $Page->Id ?>">
+	
+	<tr>
+		<td width="350" class="ui-movable-icon"><div class="tree-icon"><?= htmlspecialchars( $Page->Name ) ?></div></td>
+		<td width="250"><?= htmlspecialchars( $Page->Link ) ?></td>
+		<td><?= htmlspecialchars( $Page->Title ) ?></td>
+		<td width="40" align="center">
+			<input type="checkbox" name="InMenu[]" value="<?= $Page->Id ?>" <?= HTML::checked( $Page->InMenu ) ?> />
+		</td>
+		<td width="40" align="center">
+			<input type="checkbox" name="IsEnabled[]" value="<?= $Page->Id ?>" <?= HTML::checked( $Page->IsEnabled ) ?> />
+		</td>
+		<td width="120" class="actions">
+			<a href="<?= $this->getLink('edit/'.$Page->Id, true) ?>">изменить</a>
+			<a href="<?= $this->getLink('delete/'.$Page->Id.'#delete') ?>">удалить</a>
+		</td>
+	</tr>
+	
+	<? if ( $Page->Children ) : ?>
+	<ul class="ui-sortable">
+		<? foreach ( Content_Page::getChildren( $Page->Id ) as $Child ) : ?>
+		<?= $this->htmlListItem( $Child ) ?>
+		<? endforeach; ?>
+	</ul>
+	<? endif; ?>
+</li>

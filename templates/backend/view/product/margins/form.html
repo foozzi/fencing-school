@@ -1,0 +1,62 @@
+<div class="content-box">
+
+	<h1><?= $Margin->Id ? 'Редактирование наценки' : 'Добавление наценки' ?></h1>
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" class="ping">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Бренд</th>
+			<td>
+				<select name="BrandId" class="first">
+					<option value="">Выберите бренд</option>
+					<?= $this->htmlBrandOptions( $Margin->BrandId ) ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>Диаметр</th>
+			<td>
+				<select name="Diameter">
+					<option value="">Диаметр</option>
+					<?= HTML::options( Car_Tyre::getDiameters(), $Margin->Diameter ) ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>Наценка</th>
+			<td><input type="text" name="Value" maxlength="2" class="mini price" value="<?= floatval( $Margin->Value ) ?>" /> %</td>
+		</tr>
+		</table>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit">Сохранить</button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+})(jQuery);
+//-->
+</script>

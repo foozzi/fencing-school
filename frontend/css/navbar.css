@@ -1,0 +1,165 @@
+/*
+
+HOW TO CREATE A CSS3 DROPDOWN MENU [TUTORIAL]
+
+"How to create a CSS3 Dropdown Menu [Tutorial]" was specially made for DesignModo by our friend Valeriu Timbuc.
+
+Links:
+http://vtimbuc.net/
+https://twitter.com/vtimbuc
+http://designmodo.com
+http://vladimirkudinov.com
+
+*/
+
+/* Reset */
+.menu,
+.menu ul,
+.menu li,
+.menu a {
+	margin: 0 auto;
+	padding: 0 auto;
+	border: none;
+	outline: none;
+	line-height: 150%;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 135%;
+}
+
+/* Menu */
+.menu {	
+	
+
+	z-index: 2000;
+
+	height: 40px;
+	
+	max-width: 100%;
+
+	margin: 0 auto;
+
+	background: url( "../img/menubar_m.png" );
+
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.menu li {
+	position: relative;
+	display: table-cell;
+	list-style: none;
+	float: left;
+	display: block;
+	height: 40px;
+}
+
+/* Links */
+
+.menu li a {
+	display: block;
+	padding: 0 58px;
+	margin: 6px 0;
+	line-height: 28px;
+	text-decoration: none;
+	
+	border-left: 1px solid rgb(238,238,238);
+
+	/*border-right: 1px solid #4f5058;*/
+
+
+	font-weight: bold;
+	font-size: 12px;
+
+	color: rgb(100, 100, 100);
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,.6);*/
+
+	-webkit-transition: color .2s ease-in-out;
+	-moz-transition: color .2s ease-in-out;
+	-o-transition: color .2s ease-in-out;
+	-ms-transition: color .2s ease-in-out;
+	transition: color .2s ease-in-out;
+}
+
+.menu li:first-child a { border-left: none; }
+.menu li:last-child a{ border-right: none; }
+
+.menu li:hover > a { color: #1C1C1C; }
+
+/* Sub Menu */
+
+.menu ul {
+	
+	font-size: 9px;
+
+	position: absolute;
+	top: 40px;
+	left: 10px;
+	border-bottom: 1px solid #c3c3c3;
+	border-right: 1px solid #c3c3c3;
+	border-left: 1px solid #c3c3c3;
+	
+	opacity: 0;
+
+	z-index: 1000;
+	
+	background: #ffffff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ1JSIgc3RvcC1jb2xvcj0iI2U1ZTVlNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+	background: -moz-linear-gradient(top,  hsla(0,0%,100%,1) 0%, hsla(0,0%,90%,1) 45%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,hsla(0,0%,100%,1)), color-stop(45%,hsla(0,0%,90%,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  hsla(0,0%,100%,1) 0%,hsla(0,0%,90%,1) 45%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  hsla(0,0%,100%,1) 0%,hsla(0,0%,90%,1) 45%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  hsla(0,0%,100%,1) 0%,hsla(0,0%,90%,1) 45%); /* IE10+ */
+	background: linear-gradient(to bottom,  hsla(0,0%,100%,1) 0%,hsla(0,0%,90%,1) 45%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
+
+	webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	border-radius: 0px 0px 5px 5px;
+
+	-webkit-transition: opacity .25s ease .1s;
+	-moz-transition: opacity .25s ease .1s;
+	-o-transition: opacity .25s ease .1s;
+	-ms-transition: opacity .25s ease .1s;
+	transition: opacity .25s ease .1s;
+}
+
+
+.menu li:hover > ul { opacity: 1; }
+
+.menu ul li {
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+
+	-webkit-transition: height .25s ease .1s;
+	-moz-transition: height .25s ease .1s;
+	-o-transition: height .25s ease .1s;
+	-ms-transition: height .25s ease .1s;
+	transition: height .25s ease .1s;
+}
+
+.menu li:hover > ul li {
+	height: 36px;
+	overflow: visible;
+	padding: 0;
+}
+
+.menu ul li a {
+	width: 170px;
+	padding: 4px 0 4px 15px;
+	margin: 0;
+
+	border: none;
+	border-bottom: 1px solid #353539;
+	
+	color: rgb(100,100,100);
+}
+
+.menu ul li:hover > a { color: #c3c3c3; }
+
+
+.menu ul li:last-child a { border: none; }
+

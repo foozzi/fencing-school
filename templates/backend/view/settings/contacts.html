@@ -1,0 +1,77 @@
+<div class="content-box">
+
+	<h1>Контакты в подвале</h1>
+	
+	<? if ( isset( $Error ) ) : ?>
+	<blockquote class="error">
+		<?= htmlspecialchars( $Error ) ?>
+	</blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" class="ping">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Подпись</th>
+			<td><input type="text" name="Config[copyrights]" value="<?= htmlspecialchars( Config::get('copyrights') ) ?>" class="wide" /></td>
+		</tr>
+		<tr>
+			<th width="200">E-mail</th>
+			<td><textarea name="Config[contacts/email]" rows="3" cols="40" class="wide"><?= htmlspecialchars( Config::get('contacts/email') ) ?></textarea></td>
+		</tr>
+		<!--
+                <tr>
+			<th>Skype</th>
+			<td><input type="text" name="Config[contacts/skype]" size="40" value="<?= htmlspecialchars( Config::get('contacts/skype') ) ?>" /></td>
+		</tr>
+                -->
+		<tr>
+			<th>Телефоны</th>
+			<td><textarea name="Config[contacts/phones]" rows="3" cols="40" class="wide"><?= htmlspecialchars( Config::get('contacts/phones') ) ?></textarea></td>
+		</tr>
+		<tr>
+			<th>Адрес</th>
+			<td><textarea name="Config[contacts/address]" rows="5" cols="40" class="wide"><?= htmlspecialchars( Config::get('contacts/address') ) ?></textarea></td>
+		</tr>
+		<tr>
+			<th>Отделы</th>
+			<td><textarea name="Config[contacts/offices]" rows="5" cols="40" class="wide"><?= htmlspecialchars( Config::get('contacts/offices') ) ?></textarea></td>
+		</tr>
+		<tr>
+			<td>Телефон-факс</td>
+			<td><textarea name="Config[contacts/fax]" rows="5" cols="40" class="wide"><?= htmlspecialchars( Config::get('contacts/fax') ) ?></textarea></td>
+		</tr>
+		<tr>
+			<td>Skype</td>
+			<td><textarea name="Config[contacts/skype]" rows="5" cols="40" class="wide"><?= htmlspecialchars( Config::get('contacts/skype') ) ?></textarea></td>
+		</tr>
+		</table>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit">Сохранить</button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+	
+})(jQuery);
+//-->
+</script>

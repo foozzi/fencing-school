@@ -1,0 +1,21 @@
+<div class="well">
+	<check if="{{ @Blocks }}">
+		<true>
+			<repeat group="{{ @Blocks }}" value="{{ @Block }}">
+				<check if="{{ @Block.Position }} == 1">
+					<true>				
+						<h4>{{ @Block.Name }}</h4>
+						{{ @Block.Content | raw }}
+					</true>	
+				</check>			
+				<hr />
+				<check if="{{ @Block.Position }} == 2">
+					<true>
+						<h4>{{ @Block.Name }}</h4>									
+					    {{ @Block.Content | raw }}
+					</true>
+				</check>										
+			</repeat>
+		</true>
+	</check>
+</div>

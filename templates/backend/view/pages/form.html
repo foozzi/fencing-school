@@ -1,0 +1,164 @@
+
+	<? if ( count( $Error ) ) : ?>
+		<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" class="ping">
+
+	<fieldset>
+
+	<div class="tabbable">
+	   <ul class="nav nav-tabs">
+	  		<li class="active"><a href="#tab1" data-toggle="tab" contenteditable="true"><?= _t('General') ?></a></li>
+			<li><a href="#tab2" data-toggle="tab"><?= _T('Content') ?></a></li>
+			<li><a href="#tab3" data-toggle="tab"><?= _t('Attachments') ?></a></li>
+			<li><a href="#tab4" data-toggle="tab"><?= _t('Page blocks') ?></a></li>
+	   </ul>
+
+	   <div class="tab-content">
+	      <div class="tab-pane active" id="tab1">
+
+		        <div class="form-group">
+					<?= _t('Name') ?>
+					<input type="text" name="Name" value="<?= htmlspecialchars( $Page->Name ) ?>" style="width:50%;" class="form-control" />					
+				</div>
+				<div class="form-group">
+					<?= _t('Link') ?>
+					<input type="text" name="Link" value="<?= htmlspecialchars( $Page->Link ) ?>" style="width:50%;" class="form-control" />					
+				</div>
+				<div class="form-group">
+					<label>
+						<?= _t('Parent page') ?><br />
+						<select name="ParentId" style="width: 200px">
+							<option value="0"><?= _t('Not selected') ?></option>
+							<?= HTML::options( Object::convertArray( Content_Page::getChildren(0, $Page->Id), 'Id', 'Name' ), $Page->ParentId ) ?>
+						</select>		
+					</label>
+				</div>
+				<div class="form-group">
+					<label>
+						<?= _t('Module') ?><br />
+						<select name="Module" style="width: 200px">
+							<option value=""><?= _t('Page module') ?></option>
+							<?= HTML::options( Controller_Frontend::getModules(), $Page->Module ) ?>							
+						</select>	
+					</label>
+				</div>
+
+			</div>
+
+	     
+
+	      <div class="tab-pane" id="tab2">
+	        	<div class="form-group">
+					<?= _t('Title') ?>
+					<input type="text" name="Title" value="<?= htmlspecialchars( $Page->Title ) ?>" style="width:50%;" class="form-control" />			
+				</div>
+				<div class="form-group">
+					<?= _t('Menu title') ?>
+					<input type="text" name="Menu" value="<?= htmlspecialchars( $Page->Menu ) ?>" style="width:50%;" class="form-control" />	
+				</div>
+				<div class="form-group">
+					<?= _t('SEO title') ?>
+					<input type="text" name="SeoTitle" value="<?= htmlspecialchars( $Page->SeoTitle ) ?>" style="width:50%;" class="form-control" />
+				</div>
+				<div class="form-group">
+					<?= _t('SEO keywords') ?>
+					<input type="text" name="SeoKeywords" value="<?= htmlspecialchars( $Page->SeoKeywords ) ?>" style="width:50%;" class="form-control" />
+				</div>
+				<div class="form-group">
+					<?= _t('SEO description') ?>
+					<input type="text" name="SeoDescription" value="<?= htmlspecialchars( $Page->SeoDescription ) ?>" style="width:50%;" class="form-control" />
+				</div>
+				<div class="form-group">
+					<?= _t('Description') ?>
+					<textarea name="Description" rows="5" cols="40" class="form-control" ><?= htmlspecialchars( $Page->Description ) ?></textarea>
+				</div>
+	      </div>
+	     
+	     <div class="tab-pane" id="tab3" style="padding:10px;">
+	        	<? $docs = Document::findDocuments(); ?>
+	        	<? if ( count( $docs ) ) : ?>
+	        	<ul class="announce">
+					<? foreach ( $docs as $Document ) : ?>
+					<li value="<?= $Document->Id ?>">
+						<label>
+							<input type="checkbox" name="document[]" value="<?= $Document->Id ?>" <?= HTML::checked( $Page->hasDocument( $Document ) ) ?> /> 
+							<?= htmlspecialchars( $Document->Name ) ?>
+						</label>
+					</li>
+					<? endforeach; ?>
+				</ul>
+				<? else : ?>
+				<a class="btn btn-primary" href="<?= _L('Controller_Backend_Documents') ?>"><?= _t('Upload documents') ?></a>
+				<? endif; ?>
+	      </div>
+
+	      <div class="tab-pane" id="tab4" style="padding:10px">
+	        	<? if ( $Page->Id ) : ?>
+				<div class="add">
+					<a class="btn btn-primary" href="<?= $this->getLink('addb/'.$Page->Id) ?>"><?= _t('Add block') ?></a>
+				</div>
+
+				<ul class="data-list ui-sortable page-blocks">
+				<? foreach ( $Page->getBlocks() as $i => $Block ) : ?>
+					<li value="<?= $Block->Id ?>">
+						<table class="data-list">
+							<tr>
+								<? if ( $Block->Title ) : ?>
+								<td class="col-title ui-movable-icon"><?= htmlspecialchars( $Block->Title ) ?></td>
+								<? else : ?>
+								<td class="col-title ui-movable-icon"><em><?= _t('Block #').($i + 1) ?></em></td>
+								<? endif; ?>
+								<td class="col-actions">
+									<a href="<?= $this->getLink('editb/'.$Block->Id) ?>" class="icon btn-edit" title="<?= _t('Edit') ?>"></a>
+									<a href="<?= $this->getLink('delb/'.$Block->Id.'#delete') ?>" class="icon btn-delete" title="<?= _t('Delete') ?>"></a>
+								</td>
+							</tr>
+						</table>
+					</li>
+				<? endforeach; ?>
+				</ul>
+				<? else : ?>
+				<p><?= _t('Save page first') ?></p>
+				<? endif; ?>
+	      </div>
+	   </div>
+	</div>
+
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="btn btn-primary submit"><?= _t('Save') ?></button>
+			<button type="button" name="cancel" class="btn btn-primary cancel" href="<?= $this->getLink('', true) ?>"><?= _t('Cancel') ?></button>
+		</div>
+	
+	</fieldset>
+	
+	</form>
+
+
+<script type="text/javascript">
+
+
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+
+	$form.jFixedForm();
+	$form.find('ul.tabs').jTabs({
+		prefix : 'tab-'
+	});
+
+	$form.jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: "<?= $this->getLink('posb') ?>",
+		'txtDelete'	: "<?= _t('Sure to delete block?') ?>"
+	});
+
+})(jQuery);
+//-->
+</script>

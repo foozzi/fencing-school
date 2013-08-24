@@ -1,0 +1,14 @@
+<div class="well">
+	<check if="{{ @Blocks }}">
+		<true>
+			<repeat group="{{ @Blocks }}" value="{{ @Block }}">			
+				<div id="case">			
+					{{ @Block.Content | raw }}							
+				</div>
+			</repeat>
+		</true>
+	</check>
+</div>
+<script>
+	$('#case').find('img').css('padding', '7px 10px 7px 4px');
+</script>

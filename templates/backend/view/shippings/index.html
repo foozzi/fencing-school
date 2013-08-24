@@ -1,0 +1,61 @@
+<div class="content-box">
+
+	<h2><?= $this->getController()->getTitle() ?></h2>
+	
+	<div class="add">
+		<a href="<?= $this->getLink('add') ?>">Добавить доставку</a>
+	</div>
+	
+	<div id="shipping-list" style="width: 600px">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+	<thead>
+	<tr>
+		<td>Наименование</td>
+		<td width="40">Адрес</td>
+		<td width="120">&nbsp;</td>
+	</tr>
+	</thead>
+	</table>
+	
+	<ul class="ui-sortable">
+	<? foreach ( $Shippings as $Shipping ) : ?>
+		<li value="<?= $Shipping->Id ?>">
+			<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+			<tr>
+				<td class="ui-movable-icon"><?= htmlspecialchars( $Shipping->Name ) ?></td>
+				<td width="40" align="center"><input type="checkbox" name="IsAddress" value="<?= $Shipping->Id ?>" <?= HTML::checked( $Shipping->IsAddress ) ?> /></td>
+				<td width="120" class="actions">
+					<a href="<?= $this->getLink('edit/'.$Shipping->Id) ?>">изменить</a> | 
+					<a href="<?= $this->getLink('delete/'.$Shipping->Id.'#delete') ?>">удалить</a>
+				</td>
+			</tr>
+			</table>
+		</li>
+	<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $list = $('#shipping-list'), urlState = "<?= $this->getLink('state') ?>";
+	
+	$list.jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('pos') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+	$list.find('input[name="IsAddress"]').change(function(){
+		$.get(urlState, {ajax : 1, name : $(this).attr('name'), id : $(this).val()});
+	});
+
+})(jQuery);
+//-->
+</script>

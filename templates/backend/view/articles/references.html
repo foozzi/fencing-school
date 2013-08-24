@@ -1,0 +1,19 @@
+<? foreach ( $Article->getReferences() as $Reference ) : ?>
+<li value="<?= $Reference->Id ?>">
+	<table width="100%">
+	<tr>
+		<td width="150"><?= $Reference->getLayout() ?></td>
+		<td>
+			<? if ( $Reference->Layout == Article_Reference::CATALOG ) : ?>
+			<?= htmlspecialchars( implode( ", ", array( $Reference->getCategory()->Name, $Reference->getBrand()->Name, $Reference->getType()->Name, $Reference->getMaterial()->Name ) ) ) ?>
+			<? else : ?>
+			<?= htmlspecialchars( $Reference->getObject()->Name ) ?>
+			<? endif; ?>
+		</td>
+		<td width="80" class="actions">
+			<a href="<?= $this->getLink('delr/'.$Reference->Id) ?>#delete">Удалить</a>
+		</td>
+	</tr>
+	</table>
+</li>
+<? endforeach; ?>

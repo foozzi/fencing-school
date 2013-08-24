@@ -1,0 +1,48 @@
+Уважаемый, менеджер. <br />
+C сайта <?= htmlspecialchars(Runtime::get('HTTP_HOST')) ?> 
+поступила следующая заявка на сотрудничество: <br />
+<br />
+
+<u>Компания</u><br />
+<?= htmlspecialchars(Request::get('Name')) ?><br />
+<br />
+
+<u>Адрес</u><br />
+<?= htmlspecialchars(Request::get('Address')) ?><br />
+<br />
+
+<? if ( Request::get('Site') ) : ?>
+<u>Сайт</u><br />
+<?= htmlspecialchars(Request::get('Site')) ?><br />
+<br />
+<? endif; ?>
+
+<u>Сфера деятельности</u><br />
+<?= htmlspecialchars(Request::get('Area')) ?><br />
+<br />
+
+<u>Телефон (с кодом)</u><br />
+<?= htmlspecialchars(Request::get('Phone')) ?><br />
+<br />
+
+<u>E-mail</u><br />
+<?= htmlspecialchars(Request::get('Email')) ?><br />
+<br />
+
+<u>Контактное лицо</u><br />
+<?= htmlspecialchars(Request::get('Face')) ?><br />
+<br />
+
+<u>Мобильный</u><br />
+<?= htmlspecialchars(Request::get('Mobile')) ?><br />
+<br />
+
+<u>Должность</u><br />
+<?= htmlspecialchars(Request::get('Position')) ?><br />
+<br />
+
+<? if ( Request::get('Fax') ) : ?>
+<u>Факс</u><br />
+<?= htmlspecialchars(Request::get('Fax')) ?><br />
+<br />
+<? endif; ?>

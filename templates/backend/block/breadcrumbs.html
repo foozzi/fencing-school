@@ -1,0 +1,6 @@
+<? $arr = $this->getController()->getBreadcrumbs(); ?>
+<ol class="breadcrumb">
+	<? foreach ( $arr as $i => $Item ) : ?>
+	<li class="active"><a href="<?= $Item->Link ?>"><?= htmlspecialchars( $Item->Name ) ?></a></li>
+	<? endforeach; ?>
+</ol>

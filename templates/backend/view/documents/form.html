@@ -1,0 +1,54 @@
+<div class="content-box">
+
+	<h1><?= $Document->Id ? 'Редактирование документа' : 'Добавление документа' ?></h1>
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" enctype="multipart/form-data">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Название</th>
+			<td><input type="text" name="Name" value="<?= htmlspecialchars( $Document->Name ) ?>" class="wide" /></td>
+		</tr>
+		<tr>
+			<th>Файл</th>
+			<td><input type="file" name="file" /></td>
+		</tr>
+		<? if ( $Document->IsFile ) : ?>
+		<tr>
+			<th>&nbsp;</th>
+			<td><?= htmlspecialchars( $Document->Filename ) ?></td>
+		</tr>
+		<? endif; ?>
+		</table>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit">Сохранить</button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+		</div>
+	
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+})(jQuery);
+//-->
+</script>

@@ -1,0 +1,69 @@
+<div class="content-box">
+
+	<? if ( count( $Error ) ) : ?>
+		<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" class="ping">
+
+	<fieldset>
+
+		<table class="form">
+		<tr>
+			<th class="col-param"><?= _t('Name') ?></th>
+			<td class="col-value"><input type="text" name="Name" value="<?= htmlspecialchars( $Currency->Name ) ?>" class="large first" /></td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Countries') ?></th>
+			<td class="col-value">
+				<input type="text" name="Countries" value="<?= htmlspecialchars( $Currency->Countries ) ?>" class="normal" />
+				<span class="comment"><?= _t('Countries format') ?></span>
+			</td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Sign') ?></th>
+			<td class="col-value"><input type="text" name="Sign" value="<?= htmlspecialchars( $Currency->Sign ) ?>" class="normal" /></td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Decimals') ?></th>
+			<td class="col-value"><input type="text" name="Decimals" value="<?= htmlspecialchars( $Currency->Decimals ) ?>" class="mini" /></td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Separator') ?></th>
+			<td class="col-value"><input type="text" name="Separator" value="<?= htmlspecialchars( $Currency->Separator ) ?>" class="mini" maxlength="1" /></td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Point') ?></th>
+			<td class="col-value"><input type="text" name="Point" value="<?= htmlspecialchars( $Currency->Point ) ?>" class="mini" maxlength="1" /></td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Rate') ?></th>
+			<td class="col-value"><input type="text" name="Rate" value="<?= htmlspecialchars( $Currency->Rate ) ?>" class="price" /></td>
+		</tr>
+		</table>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit"><?= _t('Save') ?></button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>"><?= _t('Cancel') ?></button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+})(jQuery);
+//-->
+</script>

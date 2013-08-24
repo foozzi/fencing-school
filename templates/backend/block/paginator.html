@@ -1,0 +1,20 @@
+<? if ( $Paginator->hasPages() ) : ?>
+<ul class="paging js-pages">
+	<? if ( $Paginator->First ) : ?>
+	<li class="prev"><a href="?<?= URL::buildGet( array('page' => $Paginator->First) ) ?>">←</a></li>
+	<? endif; ?>
+	<? if ( $Paginator->hasSpacePrev() ) : ?>
+	<li><a href="#">...</a></li>
+	<? endif; ?>
+	<? foreach ( $Paginator->getPages() as $Page ) : ?>
+	<li value="<?= $Page ?>" <?= $Paginator->Current == $Page ? 'class="active"' : '' ?>>
+		<a href="?<?= URL::buildGet( array('page' => $Page) ) ?>#<?= $Page ?>"><?= $Page ?></a></li>
+	<? endforeach; ?>
+	<? if ( $Paginator->hasSpaceNext() ) : ?>
+	<li><a href="#">...</a></li>
+	<? endif; ?>
+	<? if ( $Paginator->Last ) : ?>
+	<li class="next"><a href="?<?= URL::buildGet( array('page' => $Paginator->Last) ) ?>">→</a></li>
+	<? endif; ?>
+</ul>
+<? endif; ?>

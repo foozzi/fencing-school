@@ -1,0 +1,54 @@
+<header class="header">
+	<div class="top">
+		<div class="wrap">
+			<? if ( $this->getUser()->Id ) : ?>
+		    <div class="navbar navbar-inverse navbar-fixed-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="/adm">Школа фехтования</a>
+		        </div>
+		        <div class="navbar-collapse collapse">
+		          <ul class="nav navbar-nav">
+					<li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Содержание<b class="caret"></b></a>
+		              <ul class="dropdown-menu">
+		                <li><a href="<?= _L('Controller_Backend_Pages') ?>">Страницы</a></li>
+						<li><a href="<?= _L('Controller_Backend_Faq') ?>">Вопросы и ответы</a></li>
+						<li><a href="<?= _L('Controller_Backend_Comments') ?>">Комментарии</a></li>      
+		              </ul>
+		            </li>
+		            <li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Публикации <b class="caret"></b></a>
+		              <ul class="dropdown-menu">
+		                <li><a href="<?= _L('Controller_Backend_Tags') ?>">Теги</a></li>
+		                <li><a href="<?= _L('Controller_Backend_Articles') ?>">Статьи</a></li>
+		                <li><a href="<?= _L('Controller_Backend_News') ?>">Новости</a></li>		      
+		              </ul>
+		            </li>
+		            <li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Документы <b class="caret"></b></a>
+		              <ul class="dropdown-menu">
+		                <li><a href="<?= _L('Controller_Backend_Documents') ?>">Документы</a></li>
+						<li><a href="<?= _L('Controller_Backend_Clients') ?>">Клиенты</a></li>
+						<li><a href="<?= _L('Controller_Backend_Images') ?>">Изображения</a></li>	      
+		              </ul>
+		            </li>
+		            <li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Настройки <b class="caret"></b></a>
+		              <ul class="dropdown-menu">
+		                <li><a href="<?= _L('Controller_Backend_Settings') ?>">Общие</a></li>     
+		              </ul>
+		            </li>
+		            <li class="pull-right"><a href="<?= $this->getLink('logout') ?>">Выход</a></li>
+		          </ul>		   
+		        </div><!--/.navbar-collapse -->
+		      </div>
+		    </div>
+		<? endif; ?>
+</header>
+<div class="clear-fix"></div>

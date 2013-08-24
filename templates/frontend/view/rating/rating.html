@@ -1,0 +1,8 @@
+<repeat group="{{ @Blocks }}" value="{{ @Block }}">
+	<div class="block-info-2">
+		<div class="info-text-small">
+			{{ @Block.Name }}
+		</div>
+		{{ @Block.Content | raw }}
+	</div>
+</repeat>

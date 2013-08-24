@@ -1,0 +1,186 @@
+<h1><?= $this->getController()->getTitle(), ' - ', $Article->Id ? 'Редактирование ' : 'Добавление ' ?></h1>
+
+<? if ( count( $Error ) ) : ?>
+	<blockquote ><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+<? endif; ?>
+
+<form role="form" action="" method="post" id="edit-form" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>Заголовок</label>    
+    <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars( $Article->Title ) ?>" rel="validate(Title)" />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Дата публикации</label>
+    <input type="text" class="form-control" name="PostedAt" value="<?= $Article->getDate( true, time() ) ?>" />    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Теги</label>
+    <? foreach ( Tag::getTags() as $Tag ) : ?>
+		<label>
+			<input type="checkbox" value="<?= $Tag->Id ?>" name="Tag[]" <?= HTML::checked( $Article->has( $Tag ) ) ?> /> 
+			<?= htmlspecialchars( $Tag->Name ) ?>
+		</label>
+	<? endforeach ?>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Изображение</label>
+    <? if ( $Article->IsFile ) : ?>
+	<img src="<?= File::url( $Article, 0 ) ?>" alt="" style="margin: 15px 0;" />
+	<br />
+	<? endif; ?>
+	<input type="file" name="file" /> 
+	<? if ( $Article->IsFile ) : ?>
+	<input type="checkbox" name="detach" value="1" /> <small>удалить картинку</small>
+	<? endif; ?>      
+  </div>
+  <div class="form-group">
+    <label>СЕО Заголовок</label>    
+    <input type="text" name="SeoTitle" value="<?= htmlspecialchars( $Article->SeoTitle ) ?>" class="form-control" /></td>    
+  </div>
+  <div class="form-group">
+    <label>СЕО Заголовок</label>    
+    <input type="text" name="SeoKeywords" value="<?= htmlspecialchars( $Article->SeoKeywords ) ?>" class="form-control" />    
+  </div>
+  <div class="form-group">
+    <label>СЕО Описание</label>    
+    <input type="text" name="SeoDescription" value="<?= htmlspecialchars( $Article->SeoDescription ) ?>" class="form-control" />     
+  </div>
+  <div class="form-group">
+    <label>Краткое содержание</label>    
+    <textarea class="form-control" name="Description" rows="5" cols="40" class="wide" style="width: 95%" rel="validate(Text)"><?= htmlspecialchars( $Article->Description ) ?></textarea>    
+  </div>
+  <div class="form-group">
+    <label>Полное содержание</label>    
+    <textarea class="form-control" name="Content" rows="10" cols="40" class="wysiwyg" style="width: 95%" rel="validate(Text)"><?= htmlspecialchars( $Article->Content ) ?></textarea>
+  </div>
+  <button type="submit" name="submit" class="btn btn-primary submit">Сохранить</button>
+  <button type="button" name="cancel" class="btn btn-primary cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+</form>
+
+<div class="clear-fix"></div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form'), $layer = $form.find('.reference-layer');
+	
+	$form.jForm();
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+	$form.find('textarea.wysiwyg').tinymce($.tinymce.defaultOptions.simple);
+	
+	$('#reference-layout').change(function(){
+		if ($(this).val() != '0' && !$layer.is(':visible')) $layer.slideDown();
+		if ($(this).val() == '0' && $layer.is(':visible')) $layer.slideUp();
+		$form.find('.reference').hide();
+		$('#reference-layout-'+$(this).val()).each(function(){
+			$(this).show().find(':input:first').focus();
+		});
+		if ($(this).val()){
+			$form.find('.submit-reference').show();
+		} else {
+			$form.find('.submit-reference').hide();
+		}
+	});
+	
+	$('#attach-reference').click(function(){
+		$layer.slideUp();
+		$.post("<?= $this->getLink('ref/'.$Article->Id) ?>", $form.getFields({"ajax" : 1}), function(res){
+			initReferences(res);
+			$('#reference-layout').val('0');
+		}, "html");
+		return false;
+	});
+	
+	function initReferences(html){
+		if (html) $('#references').html(html);
+		$('#references a[href$="#delete"]').unbind('click').click(function(){
+			if (!window.confirm('Открепить статью для данного условия?')) return false;
+			$.post("<?= $this->getLink('ref/'.$Article->Id) ?>", {"delete" : 1, "id" : $(this).parents('li:first').attr('value')}, function(res){
+				initReferences(res);
+			}, "html");
+			return false;
+		});
+	}
+	
+	initReferences();
+
+	$form.find('input[name="Reference[Page]"], input[name="Reference[Product]"]').autocomplete({
+		source: function( request, response ) {
+			$.get("<?= $this->getLink('json/ref') ?>", {"field" : $(this.element[0]).attr('name'), "term" : request.term}, function(res){
+				var arr = res.split("\n"), res = [];
+				for (var i=0; i<arr.length; i++){
+					var tmp = arr[i].split('|', 2);
+					if (tmp[0].toLowerCase().length > 0){
+						res.push({'id' : tmp[0], 'name' : tmp[1], 'label' : tmp[1]});
+					}
+				}
+				response(res);
+			}, "text");
+		},
+		minLength: 2,
+		select: function( event, ui ) {
+			$form.find('input[name="Reference[RefId]"]').val(ui.item.id);
+		}
+	}).each(function(){
+		$(this).data( "autocomplete" )._renderItem = function( ul, item ) {
+			return $( '<li></li>' )
+				.data( "item.autocomplete", item )
+				.append( "<a>" + item.name + "</a>" )
+				.appendTo( ul );
+			};
+	});
+	
+	function split( val ) {
+		return val.split( /,\s*/ );
+	}
+	function extractLast( term ) {
+		return split( term ).pop();
+	}
+
+	$( "#tags" )
+		// don't navigate away from the field on tab when selecting an item
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+					$( this ).data( "autocomplete" ).menu.active ) {
+				event.preventDefault();
+			}
+		})
+		.autocomplete({
+			source: function( request, response ) {
+				$.getJSON( "<?= $this->getLink('json/tags') ?>", {
+					term: extractLast( request.term )
+				}, response );
+			},
+			search: function() {
+				// custom minLength
+				var term = extractLast( this.value );
+				if ( term.length < 2 ) {
+					return false;
+				}
+			},
+			focus: function() {
+				// prevent value inserted on focus
+				return false;
+			},
+			select: function( event, ui ) {
+				var terms = split( this.value );
+				// remove the current input
+				terms.pop();
+				// add the selected item
+				terms.push( ui.item.value );
+				// add placeholder to get the comma-and-space at the end
+				terms.push( "" );
+				this.value = terms.join( ", " );
+				return false;
+			}
+		});
+
+	
+
+})(jQuery);
+//-->
+</script>

@@ -1,0 +1,46 @@
+
+	<a class="btn btn-primary" href="<?= $this->getLink('add') ?>"><?= _t('Add tag') ?></a>
+
+	<table class="table table-striped">
+        <thead>
+          <tr>
+          	<th>#</th>
+            <th>Название</th>
+            <th>Изменить</th>
+            <th>Удалить</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          	<? foreach ( $Tags as $Tag ) : ?>
+            <td><?= $Tag->Id ?></td>
+            <td><?= htmlspecialchars( $Tag->Name ) ?></td>
+            <td><a href="<?= $this->getLink('edit/'.$Tag->Id) ?>">изменить</a></td>
+            <td><a href="<?= $this->getLink('delete/'.$Tag->Id.'#delete') ?>">удалить</a></td>
+        	<? endforeach; ?>
+          </tr>
+        </tbody>
+      </table>
+
+	
+
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $list = $('#attr-list');
+	
+	$list.jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('pos') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+})(jQuery);
+//-->
+</script>
+
+
+

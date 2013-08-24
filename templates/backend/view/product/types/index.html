@@ -1,0 +1,55 @@
+<div class="content-box">
+
+	<h2><?= $this->getController()->getTitle() ?></h2>
+	
+	<div class="add">
+		<a href="<?= $this->getLink('add') ?>">Добавить тип</a>
+	</div>
+	
+	<div id="types-list" style="width: 600px">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+	<thead>
+	<tr>
+		<td>Тип</td>
+		<td width="120">&nbsp;</td>
+	</tr>
+	</thead>
+	</table>
+	
+	<ul class="ui-sortable">
+	<? foreach ( $Types as $Type ) : ?>
+		<li value="<?= $Type->Id ?>">
+			<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+			<tr>
+				<td class="ui-movable-icon"><?= htmlspecialchars( $Type->Name ) ?></td>
+				<td width="120" class="actions">
+					<a href="<?= $this->getLink('edit/'.$Type->Id) ?>">изменить</a> | 
+					<a href="<?= $this->getLink('delete/'.$Type->Id.'#delete') ?>">удалить</a>
+				</td>
+			</tr>
+			</table>
+		</li>
+	<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $list = $('#types-list');
+	
+	$list.jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('pos') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+})(jQuery);
+//-->
+</script>

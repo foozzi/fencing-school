@@ -1,0 +1,39 @@
+<a class="btn btn-primary" href="<?= $this->getLink('add') ?>">Добавить <?= $this->getController()->getArticleType() == Article::NEWS ? 'новость' : 'статью' ?></a>
+
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	  	<th>#</th>
+	    <th>Заголовок</th>
+	    <th>Дата</th>
+	    <th>Изменить</th>            
+	    <th>Удалить</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	  	<? foreach ( $Articles as $Article ) : ?>
+	    <td><?= $Article->Id ?></td>
+	    <td><?= htmlspecialchars( $Article->Title ) ?></td>	
+	    <td><?= $Article->getDate() ?></td>	
+	    <td><a href="<?= $this->getLink('edit/'.$Article->Id) ?>">изменить</a></td>
+	    <td><a href="<?= $this->getLink('delete/'.$Article->Id.'#delete') ?>">удалить</a></td>
+		<? endforeach; ?>
+	  </tr>
+	</tbody>
+</table>
+
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	$('#articles-list').jFilterList({
+		'wrapper'	: '.content-box',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+})(jQuery);
+//-->
+</script>

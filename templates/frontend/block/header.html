@@ -1,0 +1,42 @@
+<div class="toolbar">
+  <p class="link-panel">
+    <a class="link-style" href="/">Главная</a> |
+  </p>
+  <p class="date-panel-right">
+    Сегодня: <?= $this->getDate() ?>
+  </p>
+</div>
+<div class="header-top">
+
+<a href="/"><img src="/img/zgdulf-logo.png" /></a>
+<!--a href="/#sp" rel="modal:open" class="button pull-right"><i class="icon-heart"></i>  Спонсорам</a>-->
+
+</div>
+
+<check if="{{ !@auth }}">
+  <true>      
+    <div id="login-box" class="login-popup">
+      <form class="signin" action="/login" method="post" id="adm">
+        <div class="form-align">
+            <fieldset class="textbox">
+              <div id="res"></div>
+              <label class="username">
+                <span>Логин:</span>
+                <input id="username" name="login" value="" type="text" autocomplete="on" placeholder="Введите логин">
+              </label>
+              <input id="x" name="x" style="display:none;" type="text">
+              <label class="password">
+                <span>Пароль:</span>
+                <input id="password" name="passwd" value="" type="password" placeholder="Введите пароль">
+              </label>
+              <button class="submit button" type="submit">Войти</button>
+              <p>        
+                <a href="#" class="close"><img src="/img/close_pop.png" class="btn_close" title="Close Window" alt="Закрыть" /></a>
+              </p>        
+            </fieldset>
+          </div>
+      </form>
+    </div>
+  </true>
+</check>
+

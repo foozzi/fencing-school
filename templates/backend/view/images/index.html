@@ -1,0 +1,61 @@
+<div class="content-box">
+
+	<h1>Изображения страниц</h1>
+	
+	<div class="add">
+		<a href="<?= $this->getLink('add') ?>">Добавить изображение</a>
+	</div>
+	
+	<div id="pages-list">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+	<thead>
+	<tr>
+		<td>Наименование</td>
+		<td width="300">Файл</td>
+		<td width="120">&nbsp;</td>
+	</tr>
+	</thead>
+	</table>
+	
+	<ul>
+	<? foreach ( $Images as $Image ) : ?>
+		<li value="<?= $Image->Id ?>">
+			<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+			<tr>
+				<td><?= htmlspecialchars( $Image->Name ) ?></td>
+				<td width="300"><?= htmlspecialchars( $Image->Filename ) ?></td>
+				<td width="120" class="actions">
+					<a href="<?= $this->getLink('edit/'.$Image->Id) ?>">изменить</a> | 
+					<a href="<?= $this->getLink('delete/'.$Image->Id.'#delete') ?>">удалить</a>
+				</td>
+			</tr>
+			</table>
+		</li>
+	<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $list = $('#pages-list'), url = '<?= $this->getLink() ?>';
+	
+	$list.find('a[href$="#delete"]').click(function(){
+		if (!confirm('Вы действительно хотите удалить текущее изображение?')) return false;
+		var $this = $(this), $li = $this.parents('li:first');
+		$.post($(this).attr('href'), {ajax : 1}, function(res){
+			if (res.result) $li.remove();
+			if (res.msg) alert(res.msg);
+		}, 'json');
+		return false;
+	});
+	
+})(jQuery);
+//-->
+</script>

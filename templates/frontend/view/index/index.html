@@ -1,0 +1,101 @@
+<div class="pollSlider">
+sdfgg
+</div>
+<div id="pollSlider-button"><p class="right-slide-text-button">Спонсорам</p></div>
+
+    <div class="row-fluid">    
+        <div class="span12 block-info">          
+          <div class="row-fluid" style="padding-top:20px;"> 
+            <div class="span2">                         
+                <img src="http://placehold.it/260x180" alt="">          
+            </div>
+            <div class="ribbon-wrapper-green"><div class="ribbon-green">Новости</div></div>
+                    <div class="info-text-small">
+              <p><?= $Article->Title ?></p>
+            </div> 
+         <div class="span9"> 
+            <?= $Article->Description ?>
+          <p><a class="btn pull-right" href="/competitions/view/<?= $Article->Id ?>">Читать полную новость</a></p>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8">
+        <div id="myCarousel" class="carousel slide">
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="active item">…</div>
+            <div class="item">…</div>
+            <div class="item">…</div>
+          </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </div>
+      </div>
+
+      
+          <div class="span4 block-info">
+            <div class="info-text-small">
+              <p>{{ @Block.Name }}</p>
+            </div>
+            <p>
+              {{ @Block.Content | raw }}
+            </p>
+          </div>
+    
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6 block-info">
+        <h4>
+          ЧЕ 2013 Загреб: Украина везет домой полный комплект наград
+        </h4>
+        <p class="muted">22 Июня 2013</p>
+        <p>
+          По итогам Чемпионата Европы по фехтованию в Загребе Украина заняла пятое общекомандное место. Всего наши спортсмены...
+        </p>
+        <p class="button-desc pull-right">
+          <a class="btn" href="#">Подробней »</a>   
+        </p>
+      </div>
+
+      <div class="span6 block-info">  
+        <h4>
+          ЧЕ 2013 Загреб: Саблисты завоевывают бронзу
+        </h4>
+        <p class="muted">21 Июня 2013</p>
+        <p>
+          Финальный день Чемпионата Европы по фехтованию в Загребе завершился для Украины бронзой саблистов и пятыми местом шпажисток. 
+        </p>
+        <p class="button-desc pull-right">
+          <a class="btn" href="#">Подробней »</a>   
+        </p>
+      </div>
+    </div>
+
+    <?= $this->htmlSponsor() ?>
+
+  <div class="row-fluid">
+    <div class="span12 block-info">
+
+      <img class="" src="http://nffu.org.ua/images/stories/eurofencing_banner_2.gif"/>
+    </div>
+  </div>
+
+<script>    
+  $('div.modal-body').find('p').addClass('well');
+  $('div.block-info').find('img').addClass('news-image');  
+  $('div.pollSlider p').select().addClass('pollSlider-text');
+  $('div.carousel-inner div.item:first').select().addClass('active');
+  $('#img*').each(function(){
+    $(this).find('img').addClass('thumbnail');    
+  });  
+</script>

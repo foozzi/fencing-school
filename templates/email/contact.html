@@ -1,0 +1,24 @@
+Дорогой, менеджер. <br />
+Поступило сообщение со страницы обратной связи. <br />
+<br />
+
+<u>Имя</u><br />
+<?= htmlspecialchars( Request::get('Name') ) ?><br />
+<br />
+
+<u>E-mail</u><br />
+<?= htmlspecialchars( Request::get('Email') ) ?><br />
+<br />
+
+<u>Телефон</u><br />
+<?= htmlspecialchars( Request::get('Phone') ) ?><br />
+<br />
+
+<u>Тема</u><br />
+<?= htmlspecialchars( Request::get('Subject') ) ?><br />
+<br />
+
+<u>Текст</u><br />
+<?= nl2br( htmlspecialchars( Request::get('Text') ) ) ?><br />
+<br />
+

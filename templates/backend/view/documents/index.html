@@ -1,0 +1,69 @@
+<div class="content-box">
+
+	<h2>Файлы и документы</h2>
+	
+	<div class="add">
+		<a href="<?= $this->getLink('add') ?>">Добавить документ</a>
+	</div>
+	
+	<div id="pages-list">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+	<thead>
+	<tr>
+		<td width="400">Название</td>
+		<td>Файл</td>
+		<td width="100" class="price">Размер</td>
+		<td width="10">&nbsp;</td>
+		<td width="120">&nbsp;</td>
+	</tr>
+	</thead>
+	</table>
+	
+	<ul class="ui-sortable">
+	<? foreach ( $Documents as $Document ) : ?>
+		<li value="<?= $Document->Id ?>">
+			<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+			<tr>
+				<td width="400" class="ui-movable-icon"><?= htmlspecialchars( $Document->Name ) ?></td>
+				<td>
+					<a href="<?= File::url( $Document ) ?>" title="Загрузить <?= htmlspecialchars( $Document->Filename ) ?>"><?= htmlspecialchars( $Document->Filename ) ?></a>
+				</td>
+				<td width="100" class="price"><?= htmlspecialchars( $Document->getFilesize() ) ?></td>
+				<td width="10">&nbsp;</td>
+				<td width="120" class="actions">
+					<a href="<?= $this->getLink('edit/'.$Document->Id) ?>">изменить</a> | 
+					<a href="<?= $this->getLink('delete/'.$Document->Id.'#delete') ?>">удалить</a>
+				</td>
+			</tr>
+			</table>
+		</li>
+	<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $list = $('#pages-list'), url = '<?= $this->getLink() ?>';
+	
+	$list.find('a[href$="#delete"]').click(function(){
+		if (!confirm('Вы действительно хотите удалить текущий документ?')) return false;
+		var $this = $(this), $li = $this.parents('li:first');
+		$.post($(this).attr('href'), {ajax : 1}, function(res){
+			if (res.result) $li.remove();
+			if (res.msg) alert(res.msg);
+		}, 'json');
+		return false;
+	});
+	
+	$list.find('ul.ui-sortable').orderPosition(url+'/pos');
+	
+})(jQuery);
+//-->
+</script>

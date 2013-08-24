@@ -1,0 +1,50 @@
+<div class="content-box">
+
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form">
+
+	<fieldset>
+
+		<table class="form">
+		<tr>
+			<th class="col-param"><?= _t('Question') ?></th>
+			<td class="col-value"><input type="text" name="Question" value="<?= htmlspecialchars( $Faq->Question ) ?>" class="large first" /></td>
+		</tr>
+		<tr>
+			<th class="col-param"><?= _t('Answer') ?></th>
+			<td class="col-value">
+				<textarea name="Answer" rows="10" cols="40" class="wysiwyg" style="width: 95%"><?= htmlspecialchars( $Faq->Answer ) ?></textarea>
+			</td>
+		</tr>
+		</table>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit"><?= _t('Save') ?></button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>"><?= _t('Cancel') ?></button>
+		</div>
+	
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+	$form.find('textarea.wysiwyg').tinymce($.tinymce.defaultOptions.simple);
+
+})(jQuery);
+//-->
+</script>

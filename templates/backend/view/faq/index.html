@@ -1,0 +1,51 @@
+<div class="content-box">
+
+	<div class="add">
+		<a href="<?= $this->getLink('add') ?>">Добавить вопрос-ответ</a>
+	</div>
+	
+	<div id="pages-list">
+
+	<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+	<thead>
+	<tr>
+		<td>Вопрос</td>
+		<td width="120">&nbsp;</td>
+	</tr>
+	</thead>
+	</table>
+	
+	<ul class="ui-sortable">
+	<? foreach ( $Faqs as $Faq ) : ?>
+		<li value="<?= $Faq->Id ?>">
+			<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+			<tr>
+				<td class="ui-movable-icon"><?= htmlspecialchars( $Faq->Question ) ?></td>
+				<td width="120" class="actions">
+					<a href="<?= $this->getLink('edit/'.$Faq->Id) ?>">изменить</a> | 
+					<a href="<?= $this->getLink('delete/'.$Faq->Id.'#delete') ?>">удалить</a>
+				</td>
+			</tr>
+			</table>
+		</li>
+	<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	$('#pages-list').jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('pos') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+})(jQuery);
+//-->
+</script>
