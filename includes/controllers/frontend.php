@@ -139,10 +139,13 @@ class Controller_Frontend extends Controller_Base
 		$Article = new Article();
 		$Client = new Client();		
 		$Banner = new Banner();
+		$Carousel = new Carousel();
 		foreach ( $Banner->findList( array('Position = '.Banner::MAIN), 'rand()', 0, 1 ) as $Banner );		
 		$this->getView()->set( 'Articles', $Article->findShortList( array('Type = '.Article::NEWS), 'PostedAt desc', 0, 4 ) );
 		$this->getView()->set( 'Clients', $Client->findList( array(), 'Position asc' ) );					
-		$this->getView()->set( 'Banner', $Banner );
+		$this->getView()->set( 'Banner', $Banner );		
+		$params = array();
+		$this->getView()->set( 'Carousels', $Carousel->findList( $params ) );
 		$this->getView()->bodyId = 'main';
 		$Articles = $Article->findShortList( 'PostedAt desc, Id desc', $this->getOffset(), $this->getLimit() );
 		foreach ( $Articles as $Article )

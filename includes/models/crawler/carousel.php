@@ -56,11 +56,15 @@ class Crawler_Carousel extends Crawler
 					$parts = explode( '/', $link->src );
 					$images = $parts[count($parts)-1];			
 					$file = $savedir . DIRECTORY_SEPARATOR . $images;
+					$path = '/files/carousel' . DIRECTORY_SEPARATOR . $images;
+
 			}
 			file_put_contents( $file, file_get_contents( $link->src ) );							
 			
 			$Carousel = new Carousel();
-			$Carousel->Url = $file;
+			$Carousel->Path = $file;
+			$Carousel->Url = $path;
+
 			$Carousel->PostedAt = time();
 			$Carousel->save();
 
