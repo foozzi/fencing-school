@@ -35,6 +35,7 @@ class Crawler_Carousel extends Crawler
 		foreach ( $dom->find('div.slide div.slide-inner a.fpss_img span span span img') as $link )
 		{					
 			$file = $savedir . '/' . urldecode( pathinfo( $link->src, PATHINFO_BASENAME ) );
+			$path = '/files/carousel' . '/' . urldecode( pathinfo( $link->src, PATHINFO_BASENAME ) );
 			if( file_exists( $file ) )
 			{
 				$name = pathinfo( $link->src, PATHINFO_FILENAME );
