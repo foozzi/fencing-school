@@ -40,6 +40,7 @@ class Cron
 		}*/
 		//Cron::newsletter();
 		Cron::sitemap();
+		Cron::ParseCarouser();	
 	}
 	
 	public static function newsletter()
@@ -62,6 +63,12 @@ class Cron
 				$Email->send();
 			}
 		}
+	}
+
+	public static function ParseCarouser()
+	{
+		$Carousel = new Crawler_Carousel();
+		$Carousel->parser();
 	}
 
 }
