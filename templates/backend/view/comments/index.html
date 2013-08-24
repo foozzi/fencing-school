@@ -1,49 +1,47 @@
 <div class="content-box">	
 	
-	<div class="tabs">
-		<ul class="tabs">
-			<li <?= Request::get('t') != 1 ? 'class="current"' : '' ?>><a href="?t=0">В ожидании</a></li>
-			<li <?= Request::get('t') == 1 ? 'class="current"' : '' ?>><a href="?t=1">Автивные</a></li>
-		</ul>
-	</div>
+
+	<a <?= Request::get('t') != 1 ? 'class="btn btn-primary"' : '' ?> href="?t=0">В ожидании</a>
+	<a <?= Request::get('t') == 1 ? 'class="btn btn-primary"' : '' ?> href="?t=1">Автивные</a>
+
 
 	<div id="comments-list">
 
-		<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
-		<thead>
-		<tr>
-			<td width="60">Дата</td>
-			<td width="80">Тип</td>
-			<td width="60">Оценка</td>
-			<td width="200">Автор</td>
-			<td>Текст</td>
-			<td width="120">&nbsp;</td>
-		</tr>
-		</thead>
-		<tbody>
-			<? foreach ( $Comments as $Comment ) : ?>
-			<tr>
-				<td><?= $Comment->getDate() ?></td>
-				<td><?= $Comment->getType() ?></td>
-				<td><?= $Comment->Rank ?></td>
-				<td><?= htmlspecialchars( $Comment->Author ) ?></td>
-				<td>
-					<?= nl2br( htmlspecialchars( $Comment->Text ) ) ?>
-					<? foreach ( $Comment->getAnswers() as $Answer ) : ?>
-					<div class="answer"><?= nl2br( htmlspecialchars( $Answer->Text ) ) ?></div>
-					<? endforeach; ?>
-				</td>
-				<td class="actions">
-					<? if ( $Comment->IsApproved < 2 ) : ?>
-					<a href="<?= $this->getLink('approve/'.$Comment->Id, true) ?>" class="btn btn-approve" title="Подтвердить"></a>
-					<? else : ?>
-					<a href="<?= $this->getLink('edit/'.$Comment->Id, true) ?>" class="btn btn-edit" title="Изменить"></a>
-					<? endif; ?>					
-					<a href="<?= $this->getLink('delete/'.$Comment->Id) ?>#delete" class="btn btn-cancel" style="margin-left: 30px" title="Удалить"></a>
-				</td>
-			</tr>
+	<table class="table table-striped">
+			<thead>
+			  <tr>	  	
+			    <th>Дата</th>
+			    <th>Тип</th>
+			    <th>Оценка</th>            
+			    <th>Автор</th>
+			    <th>Текст</th>
+			    <th>&nbsp;</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <? foreach ( $Comments as $Comment ) : ?>
+				<tr>
+					<td><?= $Comment->getDate() ?></td>
+					<td><?= $Comment->getType() ?></td>
+					<td><?= $Comment->Rank ?></td>
+					<td><?= htmlspecialchars( $Comment->Author ) ?></td>
+					<td>
+						<?= nl2br( htmlspecialchars( $Comment->Text ) ) ?>
+						<? foreach ( $Comment->getAnswers() as $Answer ) : ?>
+						<div class="answer"><?= nl2br( htmlspecialchars( $Answer->Text ) ) ?></div>
+						<? endforeach; ?>
+					</td>
+					<td class="actions">
+						<? if ( $Comment->IsApproved < 2 ) : ?>
+						<a href="<?= $this->getLink('approve/'.$Comment->Id, true) ?>" class="btn btn-approve" title="Подтвердить"></a>
+						<? else : ?>
+						<a href="<?= $this->getLink('edit/'.$Comment->Id, true) ?>" class="btn btn-edit" title="Изменить"></a>
+						<? endif; ?>					
+						<a href="<?= $this->getLink('delete/'.$Comment->Id) ?>#delete" class="btn btn-cancel" style="margin-left: 30px" title="Удалить"></a>
+					</td>
+				</tr>
 			<? endforeach; ?>
-		</tbody>
+			</tbody>
 		</table>
 		
 	</div>

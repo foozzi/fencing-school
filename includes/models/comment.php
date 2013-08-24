@@ -237,6 +237,8 @@ class Comment extends Object
 		$Comment = new self();
 		$Comment->setPost( $data );
 		$Comment->Object = get_class( $Object );
+                // Добавляем без проверки
+                $Comment->IsApproved = 2;
 		$Comment->ObjectId = $Object->Id;
 		if ( $Comment->save() )
 		{

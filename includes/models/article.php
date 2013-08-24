@@ -219,6 +219,11 @@ class Article extends Object
 		}
 		return null;
 	}
+
+	public function getComments()
+	{		
+		return Comment::findComments($this);
+	}
 	
 	/**
 	 * The function returns Article posted date.

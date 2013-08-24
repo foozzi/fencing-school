@@ -22,7 +22,7 @@ class Controller_Backend_Articles extends Controller_Backend_Standard
 	 */
 	public function getTitle()
 	{
-		return 'Статьи';
+		return 'Интервью';
 	}
 	
 	/**
@@ -33,7 +33,7 @@ class Controller_Backend_Articles extends Controller_Backend_Standard
 	 */
 	public function getArticleType()
 	{
-		return Article::ARTICLE;
+		return Article::INTERVIEW;
 	}
 	
 	/**

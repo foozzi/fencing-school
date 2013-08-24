@@ -32,11 +32,11 @@
 	
 	var $list = $('#pages-list'), urlStatus = "<?= $this->getLink('status') ?>";
 	
-	/*$list.jFilterList({
+	$list.jFilterList({
 		'wrapper'	: '.content-box',
 		'posUrl'	: '<?= $this->getLink('pos') ?>',
 		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
-	});*/
+	});
 
 	$list.find('input[name="InMenu[]"], input[name="IsEnabled[]"]').change(function(){		
 		$.post(urlStatus, {"ajax" : 1, "id" : $(this).val(), "name" : $(this).attr('name'), "state" : $(this).is(':checked') ? 1 : 0}, function(res){

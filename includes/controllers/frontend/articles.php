@@ -111,7 +111,8 @@ class Controller_Frontend_Articles extends Controller_Frontend
 		$params[] = 'Id <> '.$Article->Id;
 		$params[] = 'Type = '.$Article->Type;
 		$this->getView()->set( 'Last', $Article->findShortList( $params, 'PostedAt desc', 0, 10 ) );		
-		$this->getView()->set( 'Article', $Article );
+		$this->getView()->set( 'Article', $Article );		
+		$this->getView()->set( 'Comments', $Article->getComments() );
 		return $this->getView()->render();
 	}
 
@@ -170,6 +171,28 @@ class Controller_Frontend_Articles extends Controller_Frontend
 		{		
 			return $this->halt( '' );
 		}		
+	}
+
+	public function comment( $id = null )
+	{
+		$response = array('result' => 0);
+		$Article = new Article();
+		$Article = $Article->findItem(array('Id = ' . $id));
+		if ( $Article->Id )
+		{
+			if ( Comment::post($Article, $_POST) )
+			{
+				$response['result'] = 1;
+				$response['msg'] = 'Комментарий добавлен.';
+				//$response['timeout'] = 3000;
+				//$response['callback'] = 'close';
+			}
+			else
+			{
+				$response['msg'] = 'Ошибка базы данных';
+			}
+		}
+		return $this->outputJSON($response);
 	}
 	
 	/**

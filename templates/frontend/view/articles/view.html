@@ -36,8 +36,79 @@
   </div>    
 </div>
 
+<div class="well">
+<div class="response"></div>
+  <? if ( !count($Comments) ) : ?>
+  <? else : ?>
+  <form id="comment-dialog" action="<?= URL::get( $this->getController() ) . '/comment/' . $Article->Id ?>" method="post">
+    <fieldset>
+      <!-- Text input-->
+      <div class="control-group">
+        <div class="js-row">
+          <label class="control-label" for="">Ваше имя</label>
+          <div class="controls">
+            <input id="" name="Author" rel="validate(Name)" type="text" placeholder="" class="input-medium">
+            <span class="js-error error" style="display: none; color:red;">Укажите имя</span>
+        </div>
+          
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="control-group">
+        <div class="js-row">
+          <label class="control-label" for="textinput">Email</label>
+          <div class="controls">
+            <input id="textinput" rel="validate(Email)" name="Email" type="text" placeholder="" class="input-medium">
+            <span class="js-error error" style="display: none; color:red;">Укажите Электронную почту</span>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- Textarea -->
+      <div class="control-group">
+        <div class="js-row">
+          <label class="control-label" for="">Комментарий</label>
+          <div class="controls">                     
+            <textarea rows="5" cols="40" rel="validate(Text)" style="width:50%;" id="" name="Text"></textarea>
+            <span class="js-error error" style="display: none; color:red;">Поле пустое</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="control-group">
+        <label class="control-label" for=""></label>
+        <div class="controls">
+          <button id="" name="" class="btn btn-primary">Отравить</button>
+        </div>
+      </div>
+
+    </fieldset>
+</form>
+    Отзывы (<?= count($Comments) ?>)
+  <? endif; ?>          
+</div>
+  <? if ( count($Comments) ) : ?>
+      <? foreach ( $Comments as $Comment ) : ?>
+        <div class="well well-small">
+          <?= htmlspecialchars($Comment->Text) ?><br />
+          <span class="label"><?= htmlspecialchars($Comment->Author) ?></span>
+          <span class="label"><?= $Comment->getDate() ?></span>
+        </div>
+      <? endforeach; ?>         
+  <? endif; ?>
+
 <script>
   $('#img*').each(function(){
     $(this).find('img').addClass('thumbnail');    
+  });  
+
+  $('#comment-dialog').jAjaxForm({
+    completeSubmit: function(){   
+        //$('div.forms').hide();    
+        $('div.response').html('Комментарий добавлен.');                 
+      } 
   });  
 </script>

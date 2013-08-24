@@ -55,9 +55,8 @@ class Crawler_Carousel extends Crawler
 					preg_replace( '/http:\/\//', '', $link->src );
 					$parts = explode( '/', $link->src );
 					$images = $parts[count($parts)-1];			
-					$file = $savedir . DIRECTORY_SEPARATOR . $images;
+					$file = $savedir . DIRECTORY_SEPARATOR . $images;					
 					$path = '/files/carousel' . DIRECTORY_SEPARATOR . $images;
-
 			}
 			file_put_contents( $file, file_get_contents( $link->src ) );							
 			

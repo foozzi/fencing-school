@@ -2,47 +2,45 @@
 
 	<h2>Файлы и документы</h2>
 	
-	<div class="add">
-		<a href="<?= $this->getLink('add') ?>">Добавить документ</a>
-	</div>
+	<a class="btn btn-primary" href="<?= $this->getLink('add') ?>">Добавить документ</a>
+
 	
 	<div id="pages-list">
 
-	<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
-	<thead>
-	<tr>
-		<td width="400">Название</td>
-		<td>Файл</td>
-		<td width="100" class="price">Размер</td>
-		<td width="10">&nbsp;</td>
-		<td width="120">&nbsp;</td>
-	</tr>
-	</thead>
-	</table>
-	
-	<ul class="ui-sortable">
-	<? foreach ( $Documents as $Document ) : ?>
-		<li value="<?= $Document->Id ?>">
-			<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
-			<tr>
-				<td width="400" class="ui-movable-icon"><?= htmlspecialchars( $Document->Name ) ?></td>
-				<td>
-					<a href="<?= File::url( $Document ) ?>" title="Загрузить <?= htmlspecialchars( $Document->Filename ) ?>"><?= htmlspecialchars( $Document->Filename ) ?></a>
-				</td>
-				<td width="100" class="price"><?= htmlspecialchars( $Document->getFilesize() ) ?></td>
-				<td width="10">&nbsp;</td>
-				<td width="120" class="actions">
-					<a href="<?= $this->getLink('edit/'.$Document->Id) ?>">изменить</a> | 
-					<a href="<?= $this->getLink('delete/'.$Document->Id.'#delete') ?>">удалить</a>
-				</td>
-			</tr>
-			</table>
-		</li>
-	<? endforeach; ?>
-	</ul>
-	
+	<table class="table table-striped">
+			<thead>
+			  <tr>	  	
+			    <th>Название</th>
+			    <th>Файл</th>
+			    <th>Размер</th>            
+			    <th>&nbsp;</th>
+			    <th>&nbsp;</th>			    
+			  </tr>
+			</thead>
+			<tbody>
+			  <ul class="ui-sortable">
+			  	<? foreach ( $Documents as $Document ) : ?>
+				<li value="<?= $Document->Id ?>">
+				<table width="100%" cellpadding="0" cellspacing="0" class="data-list">
+				<tr>
+					<td width="400" class="ui-movable-icon"><?= htmlspecialchars( $Document->Name ) ?></td>
+						<td>
+							<a href="<?= File::url( $Document ) ?>" title="Загрузить <?= htmlspecialchars( $Document->Filename ) ?>"><?= htmlspecialchars( $Document->Filename ) ?></a>
+						</td>
+						<td width="100" class="price"><?= htmlspecialchars( $Document->getFilesize() ) ?></td>
+						<td width="10">&nbsp;</td>
+						<td width="120" class="actions">
+							<a href="<?= $this->getLink('edit/'.$Document->Id) ?>">изменить</a> | 
+							<a href="<?= $this->getLink('delete/'.$Document->Id.'#delete') ?>">удалить</a>
+						</td>
+					</tr>
+				</table>
+			  </li>
+			  <? endforeach; ?>
+			  </ul>
+			</tbody>
+		</table>
 	</div>
-	
 </div>
 
 
