@@ -1,5 +1,5 @@
 <div class="pollSlider">
-sdfgg
+<?= $this->htmlGetSponsor() ?>
 </div>
 <div id="pollSlider-button"><p class="right-slide-text-button">Спонсорам</p></div>
 
@@ -42,14 +42,7 @@ sdfgg
       </div>
 
       
-          <div class="span4 block-info">
-            <div class="info-text-small">
-              <p>{{ @Block.Name }}</p>
-            </div>
-            <p>
-              {{ @Block.Content | raw }}
-            </p>
-          </div>
+          <?= $this->htmlAboutCity() ?>
     
     </div>
 

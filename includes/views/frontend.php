@@ -200,6 +200,16 @@ class View_Frontend extends View_Base
 	{
 		return $this->includeLayout('block/currency-box.html');
 	}
+
+	protected function htmlAboutCity()
+	{
+		return $this->includeLayout('block/about-city.html');
+	}
+
+	protected function htmlGetSponsor()
+	{
+		return $this->includeLayout('block/get-sponsor.html');
+	}	
 	
 	protected function htmlSliderMain( $Tyres )
 	{
