@@ -3,13 +3,14 @@
     padding-right: 10px !important;
 }
 </style>
-<div class="well" id="blocks">
-	<? foreach ( $Page->getBlocks() as $Block ) : ?>
-	<? if ( $Block->IsFile ) : ?>
-		<img src="<?= File::url( $Block, 0 ) ?>" alt="" />
-		<b class="round1"></b><b class="round2"></b><b class="round3"></b><b class="round4"></b>
-		<?= nl2br( htmlspecialchars( $Block->Description ) ) ?>
-	<? endif; ?>
-	<?= $Block->Content ?>
-	<? endforeach; ?>
+
+<? foreach ( $Page->getBlocks() as $Block ) : ?>
+<? if ( $Block->IsFile ) : ?>
+        <img src="<?= File::url( $Block, 0 ) ?>" alt="" />	        
+        <?= nl2br( htmlspecialchars( $Block->Description ) ) ?>
+<? endif; ?>
+<div class="well" style="overflow:auto;" id="blocks">
+<?= $Block->Content ?>
 </div>
+<? endforeach; ?>
+
