@@ -40,7 +40,7 @@ class Cron
 		}*/
 		//Cron::newsletter();
 		Cron::sitemap();
-		Cron::ParseCarouser();	
+		//Cron::ParseCarouser();	
 	}
 	
 	public static function newsletter()

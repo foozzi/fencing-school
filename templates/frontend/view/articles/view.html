@@ -36,10 +36,10 @@
   </div>    
 </div>
 
-<div class="well">
 <div class="response"></div>
   <? if ( !count($Comments) ) : ?>
   <? else : ?>
+<div class="well">
   <form id="comment-dialog" action="<?= URL::get( $this->getController() ) . '/comment/' . $Article->Id ?>" method="post">
     <fieldset>
       <!-- Text input-->
@@ -87,9 +87,10 @@
 
     </fieldset>
 </form>
+   </div>
     Отзывы (<?= count($Comments) ?>)
   <? endif; ?>          
-</div>
+
   <? if ( count($Comments) ) : ?>
       <? foreach ( $Comments as $Comment ) : ?>
         <div class="well well-small">

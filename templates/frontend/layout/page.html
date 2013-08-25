@@ -1,12 +1,12 @@
 <body id="<?= $this->bodyId ?>">
-	<div class="page-wrap">
-		<div class="page">
-			<?= $this->htmlHeader() ?>
-            <?= $this->htmlNavbar() ?>
-			<?= $this->htmlBody() ?>			
-			<section class="page-footer-holder"></section>
-		</div>
-		<?= $this->htmlFooter() ?>
-	</div>
+    <div class="page-wrap">
+    <?= $this->htmlHeader() ?>
+    <?= $this->htmlNavbar() ?>
+        <div class="container-fluid container-block">    
+            <br />
+            <?= $this->htmlBody() ?>	                                 
+            <?= $this->htmlFooter() ?>
+        </div>   
+    </div>
 </body>
-
+ 
