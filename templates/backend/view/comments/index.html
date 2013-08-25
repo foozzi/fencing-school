@@ -12,7 +12,7 @@
 			  <tr>	  	
 			    <th>Дата</th>
 			    <th>Тип</th>
-			    <th>Оценка</th>            
+			    <!--<th>Оценка</th>-->
 			    <th>Автор</th>
 			    <th>Текст</th>
 			    <th>&nbsp;</th>
@@ -23,7 +23,7 @@
 				<tr>
 					<td><?= $Comment->getDate() ?></td>
 					<td><?= $Comment->getType() ?></td>
-					<td><?= $Comment->Rank ?></td>
+					<!--<td><?//= $Comment->Rank ?></td>-->
 					<td><?= htmlspecialchars( $Comment->Author ) ?></td>
 					<td>
 						<?= nl2br( htmlspecialchars( $Comment->Text ) ) ?>
@@ -33,11 +33,11 @@
 					</td>
 					<td class="actions">
 						<? if ( $Comment->IsApproved < 2 ) : ?>
-						<a href="<?= $this->getLink('approve/'.$Comment->Id, true) ?>" class="btn btn-approve" title="Подтвердить"></a>
+						<a href="<?= $this->getLink('approve/'.$Comment->Id, true) ?>" class="btn btn-primary btn-xs" title="">Подтвердить</a>
 						<? else : ?>
-						<a href="<?= $this->getLink('edit/'.$Comment->Id, true) ?>" class="btn btn-edit" title="Изменить"></a>
+						<a href="<?= $this->getLink('edit/'.$Comment->Id, true) ?>" class="btn btn-primary btn-xs" title="">Изменить</a>
 						<? endif; ?>					
-						<a href="<?= $this->getLink('delete/'.$Comment->Id) ?>#delete" class="btn btn-cancel" style="margin-left: 30px" title="Удалить"></a>
+						<a href="<?= $this->getLink('delete/'.$Comment->Id) ?>#delete" class="btn btn-primary btn-xs" style="margin-left: 30px" title="">Удалить</a>
 					</td>
 				</tr>
 			<? endforeach; ?>

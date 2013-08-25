@@ -1,96 +1,43 @@
-<div class="content-box">
+<div class="content-box">   
+    
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Контакты в подвале <a class="btn btn-primary btn-xs" href="<?= $this->getLink('contacts') ?>">изменить</a></h4>
+            <p><strong>Подпись:</strong> <?= htmlspecialchars( Config::get('copyrights') ) ?></p>
+            <p><strong>Email:</strong> <?= nl2br( htmlspecialchars( Config::get('contacts/email') ) ) ?></p>
+            <p><strong>Телефоны:</strong> <?= nl2br( htmlspecialchars( Config::get('contacts/phones') ) ) ?></p>         
+            <p><strong>Адрес:</strong> <?= nl2br( htmlspecialchars( Config::get('contacts/address') ) ) ?></p>              
+        </div>
+    </div>
 
-	<div class="column50">
-		<h2 class="h1">Контакты в подвале <a href="<?= $this->getLink('contacts') ?>" class="small">изменить</a></h2>
-		
-		<table width="100%" cellpadding="0" cellspacing="4">
-		<tr>
-			<td width="200">Подпись</td>
-			<td><?= htmlspecialchars( Config::get('copyrights') ) ?></td>
-		</tr>
-		<tr valign="top">
-			<td>E-mail</td>
-			<td><?= nl2br( htmlspecialchars( Config::get('contacts/email') ) ) ?></td>
-		</tr>
-		<!--
-                <tr valign="top">
-			<td>Skype</td>
-			<td><?= nl2br( htmlspecialchars( Config::get('contacts/skype') ) ) ?></td>
-		</tr>
-                -->
-		<tr valign="top">
-			<td>Телефоны</td>
-			<td><?= nl2br( htmlspecialchars( Config::get('contacts/phones') ) ) ?></td>
-		</tr>
-		<tr valign="top">
-			<td>Адрес</td>
-			<td><?= nl2br( htmlspecialchars( Config::get('contacts/address') ) ) ?></td>
-		</tr>
-		<tr valign="top">
-			<td>Отделы</td>
-			<td><?= nl2br( htmlspecialchars( Config::get('contacts/offices') ) ) ?></td>
-		</tr>
-		<tr valign="top">
-			<td>Телефон-факс</td>
-			<td><?= nl2br ( htmlspecialchars ( Config::get('contacts/fax') ) ) ?></td>
-		</tr>
-		<tr valign="top">
-			<td>Skype</td>
-			<td><?= nl2br ( htmlspecialchars ( Config::get('contacts/skype') ) ) ?></td>
-		</tr>
-		</table>
-	</div>
-	<div class="column50">
-		<h2 class="h1">Настройки почты <a href="<?= $this->getLink('email') ?>" class="small">изменить</a></h2>
-
-		<table width="100%" cellpadding="0" cellspacing="4">
-		<tr>
-			<td width="200">Адресат</td>
-			<td><?= htmlspecialchars( Config::get('email@from') ) ?></td>
-		</tr>
-		<tr>
-			<td>Менеджер контактов</td>
-			<td><?= htmlspecialchars( Config::get('email@contacts/to') ) ?></td>
-		</tr>
-		<tr>
-			<td>Менеджер заказов</td>
-			<td><?= htmlspecialchars( Config::get('email@order/to') ) ?></td>
-		</tr>
-		<tr>
-			<td>Менеджер вакансий</td>
-			<td><?= htmlspecialchars( Config::get('email@resume/to') ) ?></td>
-		</tr>
-		</table>
-	</div>
-	<br class="clear" />
-	<br />
 	
-	<div class="column50">
-		<h2 class="h1">Настройки поиска <a href="<?= $this->getLink('search') ?>" class="small">изменить</a></h2>
+	
+	<!--<div class="column50">
+		<h2 class="h1">Настройки поиска <a href="<?//= $this->getLink('search') ?>" class="small">изменить</a></h2>
 		
 		<table width="100%" cellpadding="0" cellspacing="4">
 		<tr>
 			<td width="200">Поиск yandex.ru ID</td>
-			<td><?= htmlspecialchars( Config::get('yandex/searchid') ) ?></td>
+			<td><?//= htmlspecialchars( Config::get('yandex/searchid') ) ?></td>
 		</tr>
 		<tr>
 			<td width="200">Страница выдачи результатов поиска</td>
-			<td><?= htmlspecialchars( Config::get('yandex/searchpage') ) ?></td>
+			<td><?//= htmlspecialchars( Config::get('yandex/searchpage') ) ?></td>
 		</tr>
 		</table>
-	</div>	
+	</div>	-->
 	
-	<div class="column50">
-		<h2 class="h1">Настройки соц. кнопок <a href="<?= $this->getLink('social') ?>" class="small">изменить</a></h2>
+	<!--<div class="column50">
+		<h2 class="h1">Настройки соц. кнопок <a href="<?//= $this->getLink('social') ?>" class="small">изменить</a></h2>
 		
 		<table width="100%" cellpadding="0" cellspacing="4">
 		<tr>
 			<td width="200">Кнопки "мне нравится"</td>
-			<td><?= htmlspecialchars( Config::get('social/buttons') ) ?></td>
+			<td><?//= htmlspecialchars( Config::get('social/buttons') ) ?></td>
 		</tr>
 		</table>
 	</div>	
 	<br class="clear" />
-	<br />
+	<br />-->
 
 </div>

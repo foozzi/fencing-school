@@ -82,6 +82,7 @@ class Controller_Frontend_Articles extends Controller_Frontend
 		$this->getView()->set( 'Articles', $Article->findShortList( $params, 'PostedAt desc, Id desc', $this->getOffset(), $this->getLimit() ) );
 		$this->getView()->set( 'Paginator', $Paginator );
 		$this->getView()->set( 'Current', $year );
+                $this->getView()->set( 'Comments', $Article->getComments() );
 		$this->getView()->set( 'Tag', $Tag );
 		$this->getView()->set( 'Years', $Article->getYears( $this->getArticleType() ));
 		$this->getView()->set( 'Year', $year );

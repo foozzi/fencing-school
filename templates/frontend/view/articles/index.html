@@ -16,20 +16,20 @@
             <p>
               <?= $Article->Description ?>
             </p>
-            <p><a class="btn pull-right" href="/competitions/view/<?= $Article->Id ?>">Читать полную новость</a></p>
+            <p><a class="btn pull-right" href="<?= URL::get( $this->getController() ) . '/view/' . $Article->Id ?>">Читать полную новость</a></p>
           </div>
           </div>
         </div>
 
-          <div class="span8">
+          <div class="span8" style="padding-top:10px;">
             <p>
               <!--<i class="icon-user"></i> by <a href="#">John</a>-->
-              | <i class="icon-calendar"></i> <?= $Article->getDate() ?>
-              | <i class="icon-comment"></i> <a href="#">3 Комментария</a>
-              <!--| <i class="icon-share"></i> <a href="#">39 Shares</a>-->
-              | <i class="icon-tags"></i> Теги :             
+              | <i class="icon-calendar"></i> <?= $Article->getDate() ?>              
+              | <i class="icon-comment"></i> В записи <?= count($Article->getComments()) ?> комментариев |
+              <!--| <i class="icon-share"></i> <a href="#">39 Shares</a>-->                       
               <? $tags = $Article->getTags(); ?>
               <? if ( count( $tags ) ) : ?>
+                <i class="icon-tags"></i> Теги :    
                 <? foreach ( $tags as $i => $Tag ) : ?>
                 <span class="label label-info"><a style="text-decoration:none; color:#fff" href="<?= URL::get( $this->getController() ) . '?tag=' . $Tag->Name ?>"><?= htmlspecialchars( $Tag->Name ) ?></a></span>
                 <? endforeach; ?>
