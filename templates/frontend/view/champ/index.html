@@ -1,0 +1,23 @@
+<div class="well">
+    <h3 style="text-align:center;"><ins>Чемпионы мира - Личные соревнования</ins></h3>
+
+            <div class="champ-wrap">
+                    <button id="man" href="<?= URL::get( $this->getController() ) . '/man_one'?>" class="pure-button pure-button-secondary pure-button-xlarge">Мужчины</button>
+                    <button id="woman" href="<?= URL::get( $this->getController() ) . '/woman_one'?>" class="pure-button pure-button-secondary pure-button-xlarge pull-right">Женщины</button>
+            </div>
+
+
+
+            <h3 style="text-align:center; padding-top: 50px;"><ins>Чемпионы мира - Командные соревнования</ins></h3>
+
+            <div class="champ-wrap">
+                    <button id="man" href="<?= URL::get( $this->getController() ) . '/man'?>" class="pure-button pure-button-secondary pure-button-xlarge">Мужчины</button>
+                    <button id="woman" href="<?= URL::get( $this->getController() ) . '/woman'?>" class="pure-button pure-button-secondary pure-button-xlarge pull-right">Женщины</button>
+            </div>
+    </div>
+</div>
+<script>
+    $('#man, #woman').click(function(){
+            document.location.href = $(this).attr('href');
+    });
+</script>

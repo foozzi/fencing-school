@@ -369,6 +369,7 @@ function showNotify(msg, type, timeout){
 			script_url : '/tiny_mce/tiny_mce.js',
 			// General optionsadvlink
 			theme : "modern",
+                        language : 'ru',
                                 
 			plugins : "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking save table contextmenu directionality emoticons template paste textcolor filemanager",                        
 			// Theme options

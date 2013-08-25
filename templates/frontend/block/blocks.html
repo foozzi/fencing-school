@@ -1,4 +1,9 @@
-<div class="well">
+<style>
+#blocks img{
+    padding-right: 10px !important;
+}
+</style>
+<div class="well" id="blocks">
 	<? foreach ( $Page->getBlocks() as $Block ) : ?>
 	<? if ( $Block->IsFile ) : ?>
 		<img src="<?= File::url( $Block, 0 ) ?>" alt="" />
