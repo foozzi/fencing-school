@@ -96,29 +96,24 @@
 
 	      <div class="tab-pane" id="tab4" style="padding:10px">
 	        	<? if ( $Page->Id ) : ?>
-				<div class="add">
-					<a class="btn btn-primary" href="<?= $this->getLink('addb/'.$Page->Id) ?>"><?= _t('Add block') ?></a>
-				</div>
 
-				<ul class="data-list ui-sortable page-blocks">
+                                <a class="btn btn-primary" href="<?= $this->getLink('addb/'.$Page->Id) ?>"><?= _t('Add block') ?></a>
+
+
+
 				<? foreach ( $Page->getBlocks() as $i => $Block ) : ?>
-					<li value="<?= $Block->Id ?>">
-						<table class="data-list">
-							<tr>
-								<? if ( $Block->Title ) : ?>
-								<td class="col-title ui-movable-icon"><?= htmlspecialchars( $Block->Title ) ?></td>
-								<? else : ?>
-								<td class="col-title ui-movable-icon"><em><?= _t('Block #').($i + 1) ?></em></td>
-								<? endif; ?>
-								<td class="col-actions">
-									<a href="<?= $this->getLink('editb/'.$Block->Id) ?>" class="icon btn-edit" title="<?= _t('Edit') ?>"></a>
-									<a href="<?= $this->getLink('delb/'.$Block->Id.'#delete') ?>" class="icon btn-delete" title="<?= _t('Delete') ?>"></a>
-								</td>
-							</tr>
-						</table>
-					</li>
+				<li style="list-style-type: none; padding: 10px;" value="<?= $Block->Id ?>">
+                                    <? if ( $Block->Title ) : ?>
+                                    <?= htmlspecialchars( $Block->Title ) ?>
+                                    <? else : ?>
+                                    <em><?= _t('Block #').($i + 1) ?></em>
+                                    <? endif; ?>
+
+                                    <a style="float:right;" href="<?= $this->getLink('editb/'.$Block->Id) ?>" class="btn btn-primary btn-xs" title=""><?= _t('Edit') ?></a>
+                                    &nbsp;
+                                    <a style="float:right;" href="<?= $this->getLink('delb/'.$Block->Id.'#delete') ?>" class="btn btn-primary btn-xs" title=""><?= _t('Delete') ?></a>
+                                </li>
 				<? endforeach; ?>
-				</ul>
 				<? else : ?>
 				<p><?= _t('Save page first') ?></p>
 				<? endif; ?>

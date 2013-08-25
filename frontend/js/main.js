@@ -367,9 +367,10 @@ function showNotify(msg, type, timeout){
 	var basic = {
 			// Location of TinyMCE script
 			script_url : '/tiny_mce/tiny_mce.js',
-			// General options
-			theme : "advanced",
-			plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist,phpimage",
+			// General optionsadvlink
+			theme : "modern",
+                                
+			plugins : "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking save table contextmenu directionality emoticons template paste textcolor filemanager",                        
 			// Theme options
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
