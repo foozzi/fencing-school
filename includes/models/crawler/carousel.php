@@ -64,20 +64,25 @@ class Crawler_Carousel extends Crawler
 					$path = '/files/carousel' . DIRECTORY_SEPARATOR . $images;
 			}
 			$Carousel = new Carousel();
-			$check = $Carousel->findItem();
-			if ( $check->Url !== $img )
+			$params = array();
+			$params[] = 'Url = ' . $images;
+			$Carousel = $Carousel->findItem( $params );		
+
+			if ( count( $Carousel ) )
 			{
 				file_put_contents( $file, file_get_contents( $img ) );		
 
-				$check->Url = $images;
-				$check->Path = $path;
-				$check->PostedAt = time();
-				$check->Description = $text;				
+				$Carousel->Url = $images;
+				$Carousel->Path = $path;
+				$Carousel->PostedAt = time();
+				$Carousel->Description = $text;				
 
 				echo 'Картинка ' . $num . 'обновлена';							
+
 				$num++;
-				$check->save();
-			}												
-		}										
-	}
+
+				$Carousel->save();
+			}							
+		}												
+	}										
 }

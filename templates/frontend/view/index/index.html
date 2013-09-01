@@ -34,7 +34,7 @@
                 <? foreach ( $Carousels as $Carousel ) : ?>                
                 <div class="thumb">
                     <div class="frame"><img src="<?= $Carousel->Url ?>" /></div>
-                    <div class="thumb-content"><!--<p>HTML Content</p>--><?= String::cropText( $Carousel->Description, 20 ) ?></div>
+                    <div class="thumb-content"><!--<p>HTML Content</p>--><?= String::cropText( $Carousel->Description, 110 ) ?></div>
                     <div style="clear:both;"></div>                    
                 </div>
                 <? endforeach; ?>                

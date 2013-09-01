@@ -169,18 +169,10 @@ class String
 	}
 	
 		
-	public static function cropText( $text = null, $num = null )
+	public static function cropText( $string = null, $maxlen = null )
 	{		
-		$text = explode( " ", $text );		
-		$text = array_slice( $text, 0, $num );		
-		$text = implode( " ", $text );
-		
-		if ( count( $text ) > $num ) 
-		{
-			$text .= '...';
-		}
-		
-		return $text;		
-	}
-	
+		$len = ( mb_strlen( $string ) > $maxlen ) ? mb_strripos( mb_substr( $string, 0, $maxlen ), ' ' ) : $maxlen;
+    	$cutStr = mb_substr( $string, 0, $len );
+    	return ( mb_strlen( $string ) > $maxlen ) ? '"' . $cutStr . '..."' : '"' . $cutStr . '"';
+	}   	
 }
