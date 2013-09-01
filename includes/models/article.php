@@ -38,7 +38,7 @@ create table articles(
 class Article extends Object
 {
 	
-	const NEWS		= 1;
+	const NEWS      = 1;
 	const ARTICLE	= 2;
 	const INTERVIEW	= 3;
 
@@ -100,11 +100,11 @@ class Article extends Object
 		return array(
 			'allow'			=> array('gif', 'jpg', 'jpeg', 'png'),
 			'extension'		=> 'jpg',
-			'folderFormat'	=> '%05d',
-			'folderLimit'	=> 1000,
+			'folderFormat'          => '%05d',
+			'folderLimit'           => 1000,
 			'urlFormat'		=> true,
 
-			'sizes'			=> array('215x180', '700x500'),
+			'sizes'			=> array('260x180', '700x500'),
 			'quality'		=> array(95, 90),
 			'dropOrig'		=> true,
 		);

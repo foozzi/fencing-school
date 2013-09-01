@@ -39,8 +39,8 @@ class Cron
 			$Price->loadPrices();
 		}*/
 		//Cron::newsletter();
-		Cron::sitemap();
-		//Cron::ParseCarouser();	
+		//Cron::sitemap();
+		Cron::ParseCarouser();	
 	}
 	
 	public static function newsletter()

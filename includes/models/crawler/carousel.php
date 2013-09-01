@@ -26,20 +26,24 @@ class Crawler_Carousel extends Crawler
 		ignore_user_abort(true);
 		
 		$dom = $this->getDom($this->URL());		
-		$savedir = FILES_DIR . '/carousel';
+		$savedir = FILES_DIR . '/carousel';		
 
 		if( !file_exists( $savedir ) )
 		{
 		    mkdir( $savedir, 0777, true ) or die( 'Невозможно создать директорию: ' . $savedir );
 		}
-		foreach ( $dom->find('div.slide div.slide-inner a.fpss_img span span span img') as $link )
-		{					
-			$file = $savedir . '/' . urldecode( pathinfo( $link->src, PATHINFO_BASENAME ) );
-			$path = '/files/carousel' . '/' . urldecode( pathinfo( $link->src, PATHINFO_BASENAME ) );
+		$num = 1;
+		foreach ( $dom->find('div.slide div.slide-inner') as $link )
+		{												
+			$img = ($link->find('img',0)->src);
+			$text = ($link->find('p',0)->plaintext);
+			
+			$file = $savedir . '/' . urldecode( pathinfo( $img, PATHINFO_BASENAME ) );
+			$path = '/files/carousel' . '/' . urldecode( pathinfo( $img, PATHINFO_BASENAME ) );
 			if( file_exists( $file ) )
 			{
-				$name = pathinfo( $link->src, PATHINFO_FILENAME );
-				$ext = pathinfo( $link->src, PATHINFO_EXTENSION );
+				$name = pathinfo( $img, PATHINFO_FILENAME );
+				$ext = pathinfo( $img, PATHINFO_EXTENSION );
 				$pattern = '#^' . preg_quote( $name, '#' ) . '(\d+)\.' . $ext . '$#i';
 				$handle = opendir( $savedir );
 				
@@ -53,24 +57,27 @@ class Crawler_Carousel extends Crawler
 
 					closedir( $handle );				
 
-					preg_replace( '/http:\/\//', '', $link->src );
-					$parts = explode( '/', $link->src );
+					preg_replace( '/http:\/\//', '', $img );
+					$parts = explode( '/', $img );
 					$images = $parts[count($parts)-1];			
 					$file = $savedir . DIRECTORY_SEPARATOR . $images;					
 					$path = '/files/carousel' . DIRECTORY_SEPARATOR . $images;
 			}
-			file_put_contents( $file, file_get_contents( $link->src ) );							
-			
 			$Carousel = new Carousel();
-			$Carousel->Path = $file;
-			$Carousel->Url = $path;
+			$check = $Carousel->findItem();
+			if ( $check->Url !== $img )
+			{
+				file_put_contents( $file, file_get_contents( $img ) );		
 
-			$Carousel->PostedAt = time();
-			$Carousel->save();
+				$check->Url = $images;
+				$check->Path = $path;
+				$check->PostedAt = time();
+				$check->Description = $text;				
 
-			printf('Обновлено');			
-						
-		}					
+				echo 'Картинка ' . $num . 'обновлена';							
+				$num++;
+				$check->save();
+			}												
+		}										
 	}
-
 }

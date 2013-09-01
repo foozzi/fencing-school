@@ -6,6 +6,7 @@ create table carousel(
 	Id int not null auto_increment,
 	Path varchar(200) not null,
 	Url varchar(200) not null,
+        Description varchar(800) not null,
 
 	PostedAt int not null,
 
@@ -28,6 +29,7 @@ class Carousel extends Object
 
 	public $Id,
 		   $Url,
+		   $Description,
 		   $PostedAt;
 
 	/**

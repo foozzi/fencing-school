@@ -168,4 +168,19 @@ class String
 		return preg_replace( '/[^\w\d\._]+/', '_', trim( self::translit( $string ), ' "\'()' ) );
 	}
 	
+		
+	public static function cropText( $text = null, $num = null )
+	{		
+		$text = explode( " ", $text );		
+		$text = array_slice( $text, 0, $num );		
+		$text = implode( " ", $text );
+		
+		if ( count( $text ) > $num ) 
+		{
+			$text .= '...';
+		}
+		
+		return $text;		
+	}
+	
 }

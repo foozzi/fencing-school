@@ -24,17 +24,17 @@
     <div class="row-fluid">
       <div class="span12">
         <div id="sliderFrame">
-            <div id="slider" style="width: 630px; background-image: url(http://www.menucool.com/slider/jsImgSlider/images/image-slider-2.jpg); background-position: initial initial; background-repeat: initial initial;">
+            <div id="slider" style="width: 630px; background-position: initial initial; background-repeat: initial initial;">
                 <? foreach ( $Carousels as $Carousel ) : ?>  
-                <img src="<?= $Carousel->Url ?>" alt="Welcome to Menucool Image Slider" style="display: none;">
+                <img src="<?= $Carousel->Url ?>" alt="<?= $Carousel->Description ?>" style="display: none;">
                 <? endforeach; ?>   
             </div>
             <!--thumbnails-->
-            <div id="thumbs">
+            <div id="thumbs">                
                 <? foreach ( $Carousels as $Carousel ) : ?>                
                 <div class="thumb">
                     <div class="frame"><img src="<?= $Carousel->Url ?>" /></div>
-                    <div class="thumb-content"><p>HTML Content</p>Thumbnails allows any HTML content</div>
+                    <div class="thumb-content"><!--<p>HTML Content</p>--><?= String::cropText( $Carousel->Description, 20 ) ?></div>
                     <div style="clear:both;"></div>                    
                 </div>
                 <? endforeach; ?>                
