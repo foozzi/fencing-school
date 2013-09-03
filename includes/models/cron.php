@@ -39,7 +39,7 @@ class Cron
 			$Price->loadPrices();
 		}*/
 		//Cron::newsletter();
-		//Cron::sitemap();
+		Cron::sitemap();
 		Cron::ParseCarouser();	
 	}
 	

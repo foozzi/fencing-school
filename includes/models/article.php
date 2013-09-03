@@ -412,6 +412,7 @@ class Article extends Object
 		return array(
 			self::ARTICLE	=> 'articles',
 			self::NEWS		=> 'news',
+			self::INTERVIEW	=> 'interview',
 		);
 	}
 	

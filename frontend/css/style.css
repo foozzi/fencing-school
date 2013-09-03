@@ -249,6 +249,7 @@ body {
   float: left;
   background: none repeat scroll 0% 0% white;
   position: relative;
+  box-shadow: 0 0 5px #BBBBBB;
   /*box-shadow: 4px 4px 3px 0px rgb(221, 221, 221);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;*/
