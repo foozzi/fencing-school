@@ -128,7 +128,7 @@ class Article extends Object
 	 * @see parent::save()
 	 */
 	public function save()
-	{
+	{		
 		if ( parent::save() )
 		{
 			if ( $this->tags !== null )

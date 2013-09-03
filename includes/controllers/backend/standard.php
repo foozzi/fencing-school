@@ -118,9 +118,9 @@ class Controller_Backend_Standard extends Controller_Backend
 			else if ( $Object->save() )
 			{
 				if ( !empty( $_FILES['file']['tmp_name'] ) )
-				{                                    
+				{                     						       
 					if ( File::upload( $Object, $_FILES['file'] ) )
-					{                                            
+					{                 					                                 
 						$Object->save();
 					}
 					else if ( $this->dropOnFailedUpload( $Object ) )

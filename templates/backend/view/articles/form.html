@@ -23,7 +23,7 @@
 	<? endforeach ?>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Изображение</label>
+    <label>Изображение</label>
     <? if ( $Article->IsFile ) : ?>
 	<img src="<?= File::url( $Article, 0 ) ?>" alt="" style="margin: 15px 0;" />
 	<br />
@@ -31,8 +31,15 @@
 	<input type="file" name="file" /> 
 	<? if ( $Article->IsFile ) : ?>
 	<input type="checkbox" name="detach" value="1" /> <small>удалить картинку</small>
-	<? endif; ?>      
+	<? endif; ?>	
   </div>
+  <div class="form-group">
+  	<label>ALT для изображения</label>
+	<input type="text" name="ImgAlt" value="<?= htmlspecialchars( $Article->ImgAlt ) ?>" class="form-control" />
+	<label>TITLE для изображения</label>
+	<input type="text" name="ImgTitle" value="<?= htmlspecialchars( $Article->ImgTitle ) ?>" class="form-control" />
+  </div>
+
   <div class="form-group">
     <label>СЕО Заголовок</label>    
     <input type="text" name="SeoTitle" value="<?= htmlspecialchars( $Article->SeoTitle ) ?>" class="form-control" /></td>    
