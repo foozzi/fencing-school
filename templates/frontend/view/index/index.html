@@ -26,14 +26,14 @@
         <div id="sliderFrame">
             <div id="slider" style="width: 630px; background-position: initial initial; background-repeat: initial initial;">
                 <? foreach ( $Carousels as $Carousel ) : ?>  
-                <img src="<?= $Carousel->Url ?>" alt="<?= $Carousel->Description ?>" style="display: none;">
+                <img src="<?= $Carousel->Path ?>" alt="<?= $Carousel->Description ?>" style="display: none;">
                 <? endforeach; ?>   
             </div>
             <!--thumbnails-->
             <div id="thumbs">                
                 <? foreach ( $Carousels as $Carousel ) : ?>                
                 <div class="thumb">
-                    <div class="frame"><img src="<?= $Carousel->Url ?>" /></div>
+                    <div class="frame"><img src="<?= $Carousel->Path ?>" /></div>
                     <div class="thumb-content"><!--<p>HTML Content</p>--><?= String::cropText( $Carousel->Description, 110 ) ?></div>
                     <div style="clear:both;"></div>                    
                 </div>

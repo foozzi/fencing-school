@@ -68,8 +68,8 @@ class Crawler_Carousel extends Crawler
 			$params[] = 'Url = ' . $images;
 			$Carousel = $Carousel->findItem( $params );		
 
-			if ( count( $Carousel ) )
-			{
+			//if ( count( $Carousel ) )
+			//{			
 				file_put_contents( $file, file_get_contents( $img ) );		
 
 				$Carousel->Url = $images;
@@ -79,10 +79,9 @@ class Crawler_Carousel extends Crawler
 
 				echo 'Картинка ' . $num . 'обновлена';							
 
-				$num++;
-
+				$num++;				
 				$Carousel->save();
-			}							
+			//}							
 		}												
 	}										
 }
