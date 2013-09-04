@@ -16,7 +16,7 @@ class Cron
 		foreach ( $Page->findShortList( array( 'IsEnabled = 1' ), 'Position asc' ) as $Page )
 		{
 			foreach ( $Page->getController()->getSitemapNode() as $link )
-			{
+			{				
 				$node = $xml->addChild( 'url' );
 				$node->addChild( 'loc', $link );
 			}
@@ -40,7 +40,7 @@ class Cron
 		}*/
 		//Cron::newsletter();
 		Cron::sitemap();
-		Cron::ParseCarouser();	
+		//Cron::ParseCarouser();	
 	}
 	
 	public static function newsletter()

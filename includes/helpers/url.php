@@ -79,11 +79,6 @@ class URL
 	 */
 	public static function get( $Object, $tag = '', $restoreGet = false )
 	{
-		$res = Custom_URL::get( $Object, $tag, $restoreGet );
-		if ( $res !== false )
-		{
-			return $res;
-		}
 		$link = '';
 		if ( $restoreGet && count( $_GET ) )
 		{
@@ -115,16 +110,60 @@ class URL
 			$arr = explode( '?', Request::get('REQUEST_URI', '/', 'SERVER') );
 			return self::abs( $arr[0].'?'.http_build_query( $data ) );
 		}
+		if ( $Object instanceof Article )
+		{
+			if ( $tag )
+			{
+				if ( $tag instanceof Product )
+				{
+					return self::abs( $Object->getParentLink().'/view/'.$Object->Id.'?backto='.Article_Reference::PRODUCT.'-'.$tag->Id.self::restoreGet('&') );
+				}
+				else
+				{
+					if ( isset( $_GET['tag'] ) )
+					{
+						unset( $_GET['tag'] );
+					}
+					return self::abs( $Object->getParentLink().'?tag='.urlencode( $tag instanceof Tag ? $tag->Name : $tag ).self::restoreGet('&') );
+				}
+			}
+			else
+			{
+				return self::abs( $Object->getParentLink().'/view/'.$Object->Id.self::restoreGet() );
+			}
+			return self::abs( $Object->getParentLink().'/view/'.$Object->Id.self::restoreGet() );
+		}
+		if ( $Object instanceof Car_Tyre )
+		{
+			if ( $Object->ParentId )
+			{
+				$Object = $Object->getParentTyre();
+			}
+			$url = rtrim( _L('Controller_Frontend'), '/' ).'/'.$Object->getBrand()->Slug.'-'.$Object->Slug.'-'.$Object->Id;
+			if ( $tag instanceof Car_Engine && $tag->Id )
+			{
+				$url .= '/'.$tag->getBrand()->Slug.'-'.$tag->getModel()->Slug.'-'.$tag->Slug.'-'.$tag->Year;
+			}
+			return self::abs( $url.self::restoreGet() );
+		}
+		if ( $Object instanceof Banner )
+		{
+			return self::abs( $Object->getURL() );
+		}
+		if ( $Object instanceof Comment )
+		{
+			if ( !$Object->IsApproved )
+			{
+				return self::abs( _L('Controller_Frontend_Comments').'/approve/'.$Object->getHash() );
+			}
+			return self::abs( _L('Controller_Frontend_Comments') );
+		}
 		if ( $Object instanceof Controller )
 		{
 			return self::abs( _L( $Object ) );
 		}
 		if ( is_string( $Object ) && $Object != '' )
 		{
-			if ( class_exists( $Object ) )
-			{
-				return self::get( new $Object() );
-			}
 			return self::abs( $Object );
 		}
 		return self::abs( _L('Controller_Frontend') );

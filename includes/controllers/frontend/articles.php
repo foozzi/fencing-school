@@ -8,7 +8,6 @@
  */
 class Controller_Frontend_Articles extends Controller_Frontend
 {
-	
 	/**
 	 * @see parent::getSitemapNode();
 	 */
@@ -16,14 +15,15 @@ class Controller_Frontend_Articles extends Controller_Frontend
 	{
 		$result = $params = array();
 		$Article = new Article();
-		$params = array();
-		$params[] = 'Type = '.$this->getArticleType();
+		$params = array();		
+		$params[] = 'Type = '.$this->getArticleType();		
 		foreach ( $Article->findShortList( $params, 'Id desc' ) as $Article )
-		{
-			$result[] = URL::get( $Article );
-		}
+		{			
+			$result[] = URL::get( $Article );			
+		}		
 		return $result;
 	}
+
 	
 	/**
 	 * @see parent::getName()
@@ -38,7 +38,7 @@ class Controller_Frontend_Articles extends Controller_Frontend
 	 */
 	public function getArticleType()
 	{
-		return Article::ARTICLE;
+		return Article::NEWS;
 	}
 	
 	/**

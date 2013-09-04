@@ -41,6 +41,7 @@ class Article extends Object
 	const NEWS      = 1;
 	const ARTICLE	= 2;
 	const INTERVIEW	= 3;
+	const COMPETITIONS = 4;
 
 
 	public $Id;
@@ -279,11 +280,14 @@ class Article extends Object
 	 * @return string The link.
 	 */
 	public function getParentLink()
-	{
+	{		
 		switch ( $this->Type )
 		{
 			case self::NEWS:
-				URL::get( new Controller_Frontend_Competention() );
+				return URL::get( new Controller_Frontend_Competention() );
+
+			case self::INTERVIEW:
+				return URL::get( new Controller_Frontend_Interview() );
 			
 			default:
 				return _L('Controller_Frontend_Articles');
@@ -410,8 +414,8 @@ class Article extends Object
 	public static function getTypes()
 	{
 		return array(
-			self::ARTICLE	=> 'articles',
 			self::NEWS		=> 'news',
+			self::ARTICLE	=> 'articles',			
 			self::INTERVIEW	=> 'interview',
 		);
 	}
