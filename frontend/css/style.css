@@ -641,3 +641,26 @@ form.signin input::-webkit-input-placeholder {
 .clear-fix {
   padding-top: 10%;
 }
+
+div.wrapper{  
+    float:left; /* important */  
+    position:relative; /* important(so we can absolutely position the description div */  
+    display: inline;
+}  
+div.description{  
+    position:absolute; /* absolute position (so we can position it where we want)*/  
+    bottombottom:0px; /* position will be on bottom */  
+    left:0px;  
+    width:100%;  
+    /* styling bellow */  
+    background-color:black;  
+    font-family: 'tahoma';  
+    font-size:15px;  
+    color:white;  
+    opacity:0.6; /* transparency */  
+    filter:alpha(opacity=60); /* IE transparency */  
+}  
+p.description_content{  
+    padding:10px;  
+    margin:0px;  
+}  

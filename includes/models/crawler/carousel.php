@@ -4,7 +4,7 @@
  * The Carousel image parser model class.
  * 
  * @author foozzi.
- * @version 0.1
+ * @version 0.2
  */
 
 class Crawler_Carousel extends Crawler
@@ -37,6 +37,7 @@ class Crawler_Carousel extends Crawler
 		{												
 			$img = ($link->find('img',0)->src);
 			$text = ($link->find('p',0)->plaintext);
+			$url = ($link->find('h1 a',0)->href);
 			
 			$file = $savedir . '/' . urldecode( pathinfo( $img, PATHINFO_BASENAME ) );
 			$path = '/files/carousel' . '/' . urldecode( pathinfo( $img, PATHINFO_BASENAME ) );
@@ -72,7 +73,7 @@ class Crawler_Carousel extends Crawler
 			//{			
 				file_put_contents( $file, file_get_contents( $img ) );		
 
-				$Carousel->Url = $images;
+				$Carousel->Url = $url;
 				$Carousel->Path = $path;
 				$Carousel->PostedAt = time();
 				$Carousel->Description = $text;				
