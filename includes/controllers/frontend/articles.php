@@ -104,6 +104,12 @@ class Controller_Frontend_Articles extends Controller_Frontend
 		{
 			$this->halt();
 		}
+
+		$params = array();
+		$params[] = 'Id = ' . $Article->Id;
+		$Views = $Article->findItem( $params );
+		$Views->Views = $Views->Views + 1;
+		$Views->save();
 		
 		$Page = $this->getContentPage();
 		$Page->SeoTitle = $Article->Title;

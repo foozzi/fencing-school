@@ -21,19 +21,20 @@
           </div>
         </div>
 
-          <div class="span8" style="padding-top:10px;">
+          <div class="span9" style="padding-top:10px;">
             <p>
               <!--<i class="icon-user"></i> by <a href="#">John</a>-->
               | <i class="icon-calendar"></i> <?= $Article->getDate() ?>              
-              | <i class="icon-comment"></i> В записи <?= count($Article->getComments()) ?> комментариев |
-              <!--| <i class="icon-share"></i> <a href="#">39 Shares</a>-->                       
+              | <i class="icon-comment"></i> В записи <?= count($Article->getComments()) ?> комментариев |              
+              <!--| <i class="icon-share"></i> <a href="#">39 Shares</a>-->   
+              <i class="icon-eye-open"></i> <?= $Article->Views ?> прочитали |                                    
               <? $tags = $Article->getTags(); ?>
               <? if ( count( $tags ) ) : ?>
                 <i class="icon-tags"></i> Теги :    
                 <? foreach ( $tags as $i => $Tag ) : ?>
                 <span class="label label-info"><a style="text-decoration:none; color:#fff" href="<?= URL::get( $this->getController() ) . '?tag=' . $Tag->Name ?>"><?= htmlspecialchars( $Tag->Name ) ?></a></span>
                 <? endforeach; ?>
-              <? endif; ?>                 
+              <? endif; ?>               
             </p>
           </div>
       </div>

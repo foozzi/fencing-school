@@ -16,6 +16,7 @@ create table articles(
 	SeoDescription text not null,
 	HasVideo tinyint not null,
 	Icon char(10) not null,
+	Views int(11) not null,
 
 	Filename varchar(200) not null,
 	IsFile tinyint not null,
@@ -57,6 +58,7 @@ class Article extends Object
 	public $SeoDescription;
 	public $HasVideo;
 	public $Icon;
+	public $Views;
 	
 	public $Filename;
 	public $IsFile;
@@ -270,7 +272,7 @@ class Article extends Object
 	 */
 	public function findShortList( $params = array(), $order = null, $offset = null, $limit = null )
 	{
-		return $this->findResult( 'Id, Type, Icon, Title, Description, ImgAlt, ImgTitle, HasVideo, IsFile, Filename, PostedAt', $params, $order, $offset, $limit );
+		return $this->findResult( 'Id, Type, Icon, Views, Title, Description, ImgAlt, ImgTitle, HasVideo, IsFile, Filename, PostedAt', $params, $order, $offset, $limit );
 	}
 	
 	/**

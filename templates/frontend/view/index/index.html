@@ -26,7 +26,7 @@
         <div id="sliderFrame">
             <div id="slider" style="width: 630px; background-position: initial initial; background-repeat: initial initial;">
                 <? foreach ( $Carousels as $Carousel ) : ?>  
-                <img src="<?= $Carousel->Path ?>" alt="<?= $Carousel->Description ?>" style="display: none;">
+                <a target="_blank" href="<?= $Carousel->Url ?>"><img src="<?= $Carousel->Path ?>" alt="<?= $Carousel->Description ?>" style="display: none;"></a>
                 <? endforeach; ?>   
             </div>
             <!--thumbnails-->

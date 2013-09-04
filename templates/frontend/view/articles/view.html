@@ -16,11 +16,12 @@
       </div>      
       <hr />
       <div class="row">
-        <div class="span8" style="padding-top:10px;">
+        <div class="span9" style="padding-top:10px;">
           <p>
             <!--<i class="icon-user"></i> by <a href="#">John</a>-->
             | <i class="icon-calendar"></i> <?= $Article->getDate() ?>
             | <i class="icon-comment"></i> В записи <?= count($Article->getComments()) ?> комментариев |
+            <i class="icon-eye-open"></i> <?= $Article->Views ?> прочитали |     
             <!--| <i class="icon-share"></i> <a href="#">39 Shares</a>-->                      
               <? $tags = $Article->getTags(); ?>
               <? if ( count( $tags ) ) : ?>
