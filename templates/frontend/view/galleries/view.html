@@ -1,0 +1,34 @@
+<div class="back"><a href="<?= $this->getLink() ?>">Вернуться в галерею</a></div>
+<div class="balcony">
+	<h1><?= htmlspecialchars( $Gallery->Name ) ?></h1>
+	<? if ( $Gallery->Button && $Gallery->getProduct()->Id ) : ?>
+	<div class="construct"><a href="<?= URL::get( $Gallery->getProduct() ) ?>"><?= htmlspecialchars( $Gallery->Button ) ?></a></div>
+	<? endif; ?>
+	<? if ( $Gallery->Description ) : ?>
+	<div class="text">
+		<p><?= nl2br(htmlspecialchars( $Gallery->Description ) ) ?></p>
+	</div>
+	<? endif; ?>
+</div>
+<div class="gallery g-single" id="gallery-wrapper">
+	<div id="gallery-items" class="js-items">
+		<?= $this->htmlItems( $Items, $Paginator ) ?>
+	</div>
+	
+	<?= $this->htmlPaginator() ?>
+
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	$('#gallery-wrapper').jStraightList({
+		rows	: 4,
+		limit	: <?= $this->getController()->getLimit() ?>,
+		lightbox : true
+	});
+	
+})(jQuery);
+//-->
+</script>

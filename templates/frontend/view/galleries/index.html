@@ -1,0 +1,22 @@
+<div class="balcony">
+	<h1><?= htmlspecialchars( $Page->Title ) ?></h1>
+	<? if ( $Page->Description ) : ?>
+	<div class="text">
+		<p><?= nl2br( htmlspecialchars( $Page->Description ) ) ?></p>
+	</div>
+	<? endif; ?>
+</div>
+
+<div class="gallery g-folder">
+	<? foreach ( $Galleries as $Gallery ) : ?>
+	<div class="item">
+		<div class="frame"><div class="figure"><a href="<?= URL::get( $Gallery ) ?>"><img width="142" height="98" src="<?= File::url( $Gallery->getImage(), 0 ) ?>" alt="" /></a></div></div>
+		<div class="title"><a href="<?= URL::get( $Gallery ) ?>"><?= htmlspecialchars( $Gallery->Name ) ?></a></div>
+	</div>
+	<? endforeach; ?>
+</div>
+
+<div class="text">
+<?= $this->htmlPageBlocks( $Page ) ?>
+</div>
+

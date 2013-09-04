@@ -1,0 +1,46 @@
+<div class="content-box">
+
+	<h1><a href="<?= $this->getLink('?t='.$Gallery->Type) ?>"><?= htmlspecialchars( $Gallery->Name ) ?></a> &mdash; Фото</h1>
+	
+	<div class="add">
+		<a href="<?= $this->getLink('addi/'.$Gallery->Id) ?>">Добавить фото</a> | 
+		<a href="<?= $this->getLink('upload/'.$Gallery->Id) ?>">Загрузить несколько фото</a>
+	</div>
+	
+	<div id="gallery-list" class="gallery g-single">
+
+	<ul class="ui-sortable clients">
+	<? foreach ( $Items as $Item ) : ?>
+		<li value="<?= $Item->Id ?>" class="item">
+			<div class="img ui-movable-icon frame">
+				<div class="figure">
+					<img src="<?= File::url( $Item, 0 ) ?>" alt="" />
+				</div>
+			</div>
+			<p><?= htmlspecialchars( $Item->Name ) ?></p>
+			<div class="actions">
+				<a href="<?= $this->getLink('editi/'.$Item->Id) ?>" title="изменить">изменить</a> | 
+				<a href="<?= $this->getLink('deli/'.$Item->Id.'#delete') ?>" title="удалить">удалить</a>
+			</div>
+		</li>
+	<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	$('#gallery-list').jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('posi') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+})(jQuery);
+//-->
+</script>

@@ -1,0 +1,70 @@
+<div class="content-box">
+
+	<h1>Загрузка фото</h1>
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" enctype="multipart/form-data" class="ping">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="170">Выберите файлы</th>
+			<td><input type="file" name="file[]" multiple="multiple" /></td>
+		</tr>
+		</table>
+		
+		<ul id="file-list">
+			<li class="no-selected">Файлы не выбраны</li>
+		</ul>
+		<a href="#remove" id="button-remove" style="display: none">Удалить выбранные файлы</a>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit">Загрузить</button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('items/'.$Gallery->Id, true) ?>">Отмена</button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+	var $remove = $('#button-remove'), $ul = $('#file-list'), $file = $form.find('input[name="file[]"]');
+	
+	$file.change(function(){
+		$ul.find('li:not(.no-selected)').remove();
+		for (var i = 0; i < this.files.length; i++){
+			$('<li />').text(this.files[i].name).appendTo($ul);
+		}
+		if ($ul.find('li').size() > 1){
+			$remove.show();
+			$ul.find('li.no-selected').hide();
+		}
+	});
+	
+	$remove.click(function(){
+		$file.val('');
+		$ul.find('li:not(.no-selected)').remove();
+		$ul.find('li.no-selected').show();
+		$remove.hide();
+		return false;
+	});	
+	
+})(jQuery);
+//-->
+</script>

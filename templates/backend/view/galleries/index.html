@@ -1,0 +1,55 @@
+<div class="content-box">
+
+	<h1>Галереи</h1>
+	
+	<div class="tabs">
+		<ul class="tabs">
+			<? foreach ( Gallery::getTypes() as $id => $name ) : ?>
+			<li value="<?= $id ?>" <?= $id == Request::get('t') ? 'class="current"' : '' ?>><a href="?t=<?= $id ?>"><?= htmlspecialchars( $name ) ?></a></li>
+			<? endforeach; ?>
+		</ul>
+	</div>
+	
+	<div class="add">
+		<a href="<?= $this->getLink('add', true) ?>">Добавить галерею</a>
+	</div>
+	
+	<div id="clients-list" class="gallery g-folder">
+
+	<ul class="ui-sortable clients">
+		<? foreach ( $Galleries as $Gallery ) : ?>
+		<li value="<?= $Gallery->Id ?>" class="item">
+			<div class="img ui-movable-icon frame">
+				<a href="<?= $this->getLink('items/'.$Gallery->Id) ?>">
+					<div class="figure">
+						<img src="<?= File::url( $Gallery->getImage(), 0 ) ?>" alt="" />
+					</div>
+				</a>
+			</div>
+			<p><?= htmlspecialchars( $Gallery->Name ) ?></p>
+			<div class="actions">
+				<a href="<?= $this->getLink('edit/'.$Gallery->Id, true) ?>" title="изменить">изменить</a> | 
+				<a href="<?= $this->getLink('delete/'.$Gallery->Id.'#delete') ?>" title="удалить">удалить</a>
+			</div>
+		</li>
+		<? endforeach; ?>
+	</ul>
+	
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	$('#clients-list').jFilterList({
+		'wrapper'	: '.content-box',
+		'posUrl'	: '<?= $this->getLink('pos') ?>',
+		'txtDelete'	: 'Вы действительно хотите удалить текущий элемент?'
+	});
+
+})(jQuery);
+//-->
+</script>

@@ -1,0 +1,87 @@
+<?
+$Layout = new Product_Layout_Custom();
+$Products = $Layout->getCategory()->getProducts(true);
+?>
+<div class="content-box">
+
+	<h1><?= $Gallery->Id ? 'Редактирование галереи' : 'Добавление галереи' ?></h1>
+	
+	<? if ( count( $Error ) ) : ?>
+	<blockquote class="error"><?= nl2br( htmlspecialchars( implode( "\n", $Error ) ) ) ?></blockquote>
+	<? endif; ?>
+	
+	<form action="" method="post" id="edit-form" enctype="multipart/form-data" class="ping">
+
+	<fieldset>
+
+		<table width="100%" cellpadding="0" cellspacing="4">
+		<tr>
+			<th width="200">Наименование</th>
+			<td><input type="text" name="Name" value="<?= htmlspecialchars( $Gallery->Name ) ?>" class="wide focus" /></td>
+		</tr>
+		<tr>
+			<th>Тип</th>
+			<td>
+				<select name="Type">
+					<?= HTML::options( Gallery::getTypes(), $Gallery->Type ) ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>Кнопка заказа</th>
+			<td>
+				<select name="ProductId">
+					<option value="0">выключена</option>
+					<?= HTML::options( $Products, $Gallery->ProductId ) ?>
+				</select>
+				<input type="text" name="Button" value="<?= htmlspecialchars( $Gallery->Button ) ?>" size="40" style="display: none" />
+			</td>
+		</tr>
+		<tr>
+			<th>Описание</th>
+			<td><textarea name="Description" cols="40" rows="10" class="wide"><?= htmlspecialchars( $Gallery->Description ) ?></textarea></td>
+		</tr>
+		<!--
+		<tr>
+			<th>Файл</th>
+			<td><input type="file" name="file" /></td>
+		</tr>
+		<? if ( $Gallery->IsFile ) : ?>
+		<tr>
+			<th>&nbsp;</th>
+			<td><img src="<?= File::url( $Gallery, 0 ) ?>" alt="" /></td>
+		</tr>
+		<? endif; ?>
+		-->
+		</table>
+		
+		<div class="form-buttons">
+			<button type="submit" name="submit" class="submit">Сохранить</button>
+			<button type="button" name="cancel" class="cancel" href="<?= $this->getLink('', true) ?>">Отмена</button>
+		</div>
+		
+	</fieldset>
+	
+	</form>
+	
+	
+</div>
+
+<script type="text/javascript">
+<!--
+(function($){
+	
+	var $form = $('#edit-form');
+	
+	$form.find('button.cancel').click(function(){
+		redirect($(this).attr('href'));
+	});
+	
+	$form.find('select[name="ProductId"]').change(function(){
+		var $i = $form.find('input[name="Button"]');
+		if ($(this).val() == '0') $i.hide(); else $i.show();
+	}).change();
+	
+})(jQuery);
+//-->
+</script>

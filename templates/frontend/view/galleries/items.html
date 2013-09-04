@@ -1,0 +1,14 @@
+<span style="display: none" id="list-size"><?= $Paginator->Size ?></span>
+
+<? foreach ( $Items as $Item ) : ?>
+<div class="item">
+	<div class="frame">
+		<div class="figure">
+			<a href="<?= File::url( $Item, 1 ) ?>" class="lightbox" rel="prettyPhoto[g]" title="<?= htmlspecialchars( $Item->getName() ) ?>">
+				<img src="<?= File::url( $Item, 0 ) ?>" alt="" />
+			</a>
+		</div>
+	</div>
+	<div class="title"><?= htmlspecialchars( $Item->getName() ) ?></div>
+</div>
+<? endforeach; ?>
